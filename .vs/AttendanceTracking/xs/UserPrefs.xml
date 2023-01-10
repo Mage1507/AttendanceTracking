@@ -1,18 +1,34 @@
 ﻿<Properties StartupConfiguration="{DB8D44EB-8058-4EEB-80F7-2B1EA23349DF}|https">
+  <MonoDevelop.Ide.ItemProperties.AttendanceTracking PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="AttendanceTracking/Data/Models/EmployeeVM.cs">
+    <Files>
+      <File FileName="AttendanceTracking/Models/Employee.cs" Line="15" Column="22" />
+      <File FileName="AttendanceTracking/Models/Manager.cs" Line="15" Column="23" />
+      <File FileName="AttendanceTracking/Data/Models/EmployeeVM.cs" Line="9" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="AttendanceTracking" expanded="True" />
+          <Node name="AttendanceTracking" expanded="True">
+            <Node name="AttendanceTracking" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="Models" expanded="True">
+                  <Node name="EmployeeVM.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.AttendanceTracking PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

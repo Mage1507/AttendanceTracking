@@ -18,6 +18,8 @@ internal class Program
         builder.Services.AddDbContext<DbInitializer>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql")));
         builder.Services.AddScoped<DepartmentService>();
         builder.Services.AddScoped<ManagerService>();
+        builder.Services.AddScoped<EmployeeService>();
+        builder.Services.AddScoped<AttendanceService>();
 
         var app = builder.Build();
 

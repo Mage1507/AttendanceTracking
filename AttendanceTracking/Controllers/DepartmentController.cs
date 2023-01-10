@@ -23,7 +23,7 @@ namespace AttendanceTracking.Controllers
         public IActionResult AddDepartment(Department department)
         {
 
-          var addDepartment= _departmentService.AddDepartment(department);
+            var addDepartment = _departmentService.AddDepartment(department);
 
             if (addDepartment)
             {
@@ -35,6 +35,7 @@ namespace AttendanceTracking.Controllers
             }
 
         }
+
     }
 }
 

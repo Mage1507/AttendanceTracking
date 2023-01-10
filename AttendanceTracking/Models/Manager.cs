@@ -4,17 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AttendanceTracking.Models
 {
-	public class Manager
-	{
+    public class Manager
+    {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int managerId { get; set; }
 
-		public string managerName { get; set; }
+        public string managerName { get; set; }
 
-		public int departmentId { get; set; }
+        [EmailAddress]
+        public string managerEmail { get; set; }
 
-		public Department department { get; set; }
-	}
+        public int departmentId { get; set; }
+
+        public Department department { get; set; }
+    }
 }
 

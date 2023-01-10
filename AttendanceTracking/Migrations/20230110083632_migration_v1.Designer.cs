@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceTracking.Migrations
 {
     [DbContext(typeof(DbInitializer))]
-    [Migration("20230109064523_migration_v1")]
+    [Migration("20230110083632_migration_v1")]
     partial class migrationv1
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace AttendanceTracking.Migrations
                     b.Property<DateTime>("checkInTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("checkOutTime")
+                    b.Property<DateTime?>("checkOutTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("date")
@@ -77,6 +77,10 @@ namespace AttendanceTracking.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("employeeId"));
 
+                    b.Property<string>("employeeEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("employeeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -101,6 +105,10 @@ namespace AttendanceTracking.Migrations
 
                     b.Property<int>("departmentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("managerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("managerName")
                         .IsRequired()

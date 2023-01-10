@@ -31,6 +31,7 @@ namespace AttendanceTracking.Migrations
                     managerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     managerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    managerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     departmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -51,6 +52,7 @@ namespace AttendanceTracking.Migrations
                     employeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     employeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    employeeEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     managerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -72,7 +74,7 @@ namespace AttendanceTracking.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     checkInTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    checkOutTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    checkOutTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     employeeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

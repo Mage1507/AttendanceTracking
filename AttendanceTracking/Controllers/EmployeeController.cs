@@ -2,29 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AttendanceTracking.Models;
-using AttendanceTracking.Services;
 using AttendanceTracking.Data.Models;
+using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AttendanceTracking.Controllers
 {
-    public class ManagerController : Controller
+    [ApiController]
+    public class EmployeeController : Controller
     {
-        private readonly ManagerService _managerService;
-        public ManagerController(ManagerService managerService)
-        {
-            _managerService = managerService;
-        }
 
-        [Route("[Action]")]
-        [HttpPost]
-        public IActionResult AddManager([FromBody]ManagerVM manager)
+        private readonly EmployeeService _employeeService;
+
+        public EmployeeController(EmployeeService employeeService)
         {
-            var addManager = _managerService.AddManager(manager);
-            if (addManager)
+            _employeeService = employeeService;
+        }
+       
+       [Route("[Action]")]
+        [HttpPost]
+        public IActionResult AddEmployee(EmployeeVM employeeVM)
+        {
+            var addEmployee = _employeeService.AddEmployee(employeeVM);
+            if (addEmployee)
             {
                 return Ok();
             }
