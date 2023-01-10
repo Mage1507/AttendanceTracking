@@ -9,8 +9,9 @@ namespace AttendanceTracking.Models
 
         public int id { get; set; }
 
-
+        [Required]
         public DateTime date { get; set; }
+
         public DateTime checkInTime { get; set; }
 
         public DateTime? checkOutTime { get; set; }

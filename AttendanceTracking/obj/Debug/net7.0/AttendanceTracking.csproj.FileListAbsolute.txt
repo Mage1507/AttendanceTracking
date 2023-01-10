@@ -74,3 +74,15 @@
 /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/obj/Debug/net7.0/AttendanceTracking.pdb
 /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/obj/Debug/net7.0/AttendanceTracking.genruntimeconfig.cache
 /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/obj/Debug/net7.0/ref/AttendanceTracking.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.AspNetCore.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Extensions.Hosting.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Extensions.Logging.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Formatting.Compact.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Settings.Configuration.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Sinks.Console.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Sinks.Debug.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Sinks.File.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/FluentValidation.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
+/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll

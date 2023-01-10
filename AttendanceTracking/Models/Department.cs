@@ -11,7 +11,7 @@ namespace AttendanceTracking.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int departmentId { get; set; }
 
-        [Remote(action:"IsDepartmentNameExist",controller: "Department")]
+        [Required]
         public string departmentName { get; set; }
 
     }

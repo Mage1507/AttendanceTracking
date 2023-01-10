@@ -6,9 +6,12 @@ namespace AttendanceTracking.Services
     public class DepartmentService
     {
         private readonly DbInitializer _dbContext;
-        public DepartmentService(DbInitializer dbContext)
+
+        private readonly ILogger<DepartmentService> _logger;
+        public DepartmentService(DbInitializer dbContext, ILogger<DepartmentService> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public bool AddDepartment(Department department)
@@ -32,7 +35,7 @@ namespace AttendanceTracking.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception:" + ex);
+                _logger.LogError("Exception in Add Department Method : "+ex.Message);
                 return false;
             }
 

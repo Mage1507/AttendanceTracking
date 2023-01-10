@@ -7,11 +7,7 @@ namespace AttendanceTracking.Data.Models
     {
 
         public DateTime date { get; set; }
-
-
         public DateTime checkInTime { get; set; }
-
-        [EmailAddress]
         public string employeeEmail { get; set; }
     }
 }

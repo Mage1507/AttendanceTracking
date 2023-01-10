@@ -1,7 +1,9 @@
 ﻿using AttendanceTracking.Data;
 using Microsoft.EntityFrameworkCore;
 using AttendanceTracking.Services;
-
+using Serilog;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 internal class Program
 {
@@ -11,8 +13,11 @@ internal class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        var logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().CreateLogger();
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSerilog(logger);
+
+        builder.Services.AddControllers().AddFluentValidation(c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddDbContext<DbInitializer>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql")));
