@@ -27,11 +27,11 @@ namespace AttendanceTracking.Controllers
 
             if (addDepartment)
             {
-                return Ok();
+                return Ok("Department Added Successfully");
             }
             else
             {
-                return NotFound();
+                return NotFound("Department Already Exists");
             }
 
         }

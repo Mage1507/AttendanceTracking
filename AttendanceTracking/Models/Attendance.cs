@@ -12,9 +12,9 @@ namespace AttendanceTracking.Models
         [Required]
         public DateTime date { get; set; }
 
-        public DateTime checkInTime { get; set; }
+        public TimeSpan checkInTime { get; set; }
 
-        public DateTime? checkOutTime { get; set; }
+        public TimeSpan? checkOutTime { get; set; }
 
         public int employeeId { get; set; }
         public Employee employee { get; set; }

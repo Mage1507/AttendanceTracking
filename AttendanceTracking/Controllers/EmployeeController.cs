@@ -28,11 +28,11 @@ namespace AttendanceTracking.Controllers
             var addEmployee = _employeeService.AddEmployee(employeeVM);
             if (addEmployee)
             {
-                return Ok();
+                return Ok("Employee Added Successfully");
             }
             else
             {
-                return NotFound();
+                return NotFound("Employee Already Exists or Check Manager Email");
             }
         }
     }

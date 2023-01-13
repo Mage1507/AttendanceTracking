@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AttendanceTracking.Controllers
 {
+    [ApiController]
     public class ManagerController : Controller
     {
         private readonly ManagerService _managerService;
@@ -21,16 +22,16 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult AddManager([FromBody]ManagerVM manager)
+        public IActionResult AddManager(ManagerVM managerVM)
         {
-            var addManager = _managerService.AddManager(manager);
+            var addManager = _managerService.AddManager(managerVM);
             if (addManager)
             {
-                return Ok();
+                return Ok("Manager Added Successfully");
             }
             else
             {
-                return NotFound();
+                return NotFound("Manager Already Exists or Check Department Name");
             }
         }
     }

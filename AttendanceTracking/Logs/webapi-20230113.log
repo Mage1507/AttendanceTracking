@@ -1,0 +1,87 @@
+2023-01-13 09:42:52.044 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-13 09:42:52.067 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-13 09:42:52.068 +05:30  INF  Hosting environment: Development
+2023-01-13 09:42:52.068 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-13 09:42:58.430 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-13 09:42:58.569 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 141.0958ms
+2023-01-13 09:42:58.599 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - -
+2023-01-13 09:42:58.626 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-13 09:42:58.628 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 29.4192ms
+2023-01-13 09:42:59.068 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-13 09:42:59.173 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 104.3739ms
+2023-01-13 09:44:40.671 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddEmployee application/json 105
+2023-01-13 09:44:40.679 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-13 09:44:40.686 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking)'
+2023-01-13 09:44:40.711 +05:30  INF  Route matched with {action = "AddEmployee", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddEmployee(AttendanceTracking.Data.Models.EmployeeVM) on controller AttendanceTracking.Controllers.EmployeeController (AttendanceTracking).
+2023-01-13 09:44:44.372 +05:30  INF  Executed DbCommand (290ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-13 09:44:44.659 +05:30  INF  Executed DbCommand (246ms) [Parameters=[@__managerEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerEmail_0
+2023-01-13 09:44:45.173 +05:30  INF  Executed DbCommand (270ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [employees] ([employeeEmail], [employeeName], [managerId])
+OUTPUT INSERTED.[employeeId]
+VALUES (@p0, @p1, @p2);
+2023-01-13 09:44:45.205 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-13 09:44:45.210 +05:30  INF  Executed action AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking) in 4493.3072ms
+2023-01-13 09:44:45.211 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking)'
+2023-01-13 09:44:45.221 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddEmployee application/json 105 - 200 0 - 4550.7172ms
+2023-01-13 09:45:26.451 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41
+2023-01-13 09:45:26.453 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-13 09:45:26.463 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.Models.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-13 09:45:26.485 +05:30  INF  CheckOutLog method called
+2023-01-13 09:45:26.852 +05:30  INF  Executed DbCommand (338ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-13 09:45:27.159 +05:30  INF  Executed DbCommand (293ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-13 09:45:27.180 +05:30  INF  Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2023-01-13 09:45:27.183 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 720.2507ms
+2023-01-13 09:45:27.183 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-13 09:45:27.184 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41 - 404 - application/problem+json;+charset=utf-8 732.7159ms
+2023-01-13 09:59:25.221 +05:30  INF  Application is shutting down...
+2023-01-13 10:04:08.519 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-13 10:04:08.539 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-13 10:04:08.540 +05:30  INF  Hosting environment: Development
+2023-01-13 10:04:08.540 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-13 10:04:19.900 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-13 10:04:20.018 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 120.7012ms
+2023-01-13 10:04:20.476 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-13 10:04:20.571 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 95.1032ms
+2023-01-13 10:05:03.479 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddManager application/json 93
+2023-01-13 10:05:03.488 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-13 10:05:03.495 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-13 10:05:03.520 +05:30  INF  Route matched with {action = "AddManager", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddManager(AttendanceTracking.Data.Models.ManagerVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-13 10:05:07.323 +05:30  INF  Executed DbCommand (372ms) [Parameters=[@__managerEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerEmail_0
+2023-01-13 10:05:07.448 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-01-13 10:05:07.459 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking) in 3932.6885ms
+2023-01-13 10:05:07.459 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-13 10:05:07.472 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddManager application/json 93 - 400 - application/problem+json;+charset=utf-8 3992.3310ms
+2023-01-13 10:05:58.277 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41
+2023-01-13 10:05:58.279 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-13 10:05:58.287 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.Models.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-13 10:05:58.313 +05:30  INF  CheckOutLog method called
+2023-01-13 10:05:58.586 +05:30  INF  Executed DbCommand (225ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-13 10:05:58.842 +05:30  INF  Executed DbCommand (223ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-13 10:05:58.844 +05:30  INF  Executing NotFoundObjectResult, writing value of type 'System.String'.
+2023-01-13 10:05:58.844 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 556.5768ms
+2023-01-13 10:05:58.844 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-13 10:05:58.845 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41 - 404 - text/plain;+charset=utf-8 567.9592ms
+2023-01-13 10:07:34.937 +05:30  INF  Application is shutting down...

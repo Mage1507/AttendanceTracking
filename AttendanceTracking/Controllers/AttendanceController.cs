@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AttendanceTracking.Data.Models;
+using AttendanceTracking.Models;
 using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace AttendanceTracking.Controllers
 {
-    
+
     [ApiController]
     public class AttendanceController : Controller
     {
@@ -26,36 +27,54 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult CheckInLog([FromBody]CheckInTimeVM checkInTimeVM)
+        public IActionResult CheckInLog([FromBody] CheckInTimeVM checkInTimeVM)
         {
             _logger.LogInformation("CheckInLog method called");
             var checkInLog = _attendanceService.LogCheckIn(checkInTimeVM);
             if (checkInLog)
             {
-                return Ok();
+                return Ok("CheckInTime Logged Successfully");
             }
             else
             {
-                return NotFound();
+                return NotFound("Check Email or Already CheckInTime");
             }
         }
 
         [Route("[Action]")]
         [HttpPut]
-        public IActionResult CheckOutLog([FromBody]CheckOutTimeVM checkOutTimeVM)
+        public IActionResult CheckOutLog([FromBody] CheckOutTimeVM checkOutTimeVM)
         {
             _logger.LogInformation("CheckOutLog method called");
             var checkOutLog = _attendanceService.LogCheckOut(checkOutTimeVM);
             if (checkOutLog)
             {
-                return Ok();
+                return Ok("CheckOutTime Logged Successfully");
             }
             else
             {
-                return NotFound();
+                return NotFound("Check Email or No CheckInTime");
             }
         }
-       
+
+        [Route("[Action]/{employeeEmail}")]
+        [HttpGet]
+        public List<Attendance> GetAttendanceOfEmployee(string employeeEmail)
+        {
+            _logger.LogInformation("GetAttendanceOfEmployee method called");
+            try
+            {
+                var attendance = _attendanceService.GetAttendanceOfEmployee(employeeEmail);
+                return attendance;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return null;
+            }
+
+        }
+
     }
 }
 

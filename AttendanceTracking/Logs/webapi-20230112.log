@@ -1,0 +1,430 @@
+2023-01-12 15:31:51.861 +05:30  INF  Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 15:31:51.904 +05:30  INF  Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-12 15:31:51.907 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 15:31:51.977 +05:30  INF  Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2023-01-12 15:31:51.979 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 15:31:51.981 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-12 15:31:51.989 +05:30  INF  Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-12 15:31:52.001 +05:30  INF  Applying migration '20230112100023_migration_v1'.
+2023-01-12 15:31:52.068 +05:30  INF  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [departments] (
+    [departmentId] int NOT NULL IDENTITY,
+    [departmentName] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_departments] PRIMARY KEY ([departmentId])
+);
+2023-01-12 15:31:52.071 +05:30  INF  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [managers] (
+    [managerId] int NOT NULL IDENTITY,
+    [managerName] nvarchar(max) NOT NULL,
+    [managerEmail] nvarchar(max) NOT NULL,
+    [departmentId] int NOT NULL,
+    CONSTRAINT [PK_managers] PRIMARY KEY ([managerId]),
+    CONSTRAINT [FK_managers_departments_departmentId] FOREIGN KEY ([departmentId]) REFERENCES [departments] ([departmentId]) ON DELETE CASCADE
+);
+2023-01-12 15:31:52.074 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [employees] (
+    [employeeId] int NOT NULL IDENTITY,
+    [employeeName] nvarchar(max) NOT NULL,
+    [employeeEmail] nvarchar(max) NOT NULL,
+    [managerId] int NOT NULL,
+    CONSTRAINT [PK_employees] PRIMARY KEY ([employeeId]),
+    CONSTRAINT [FK_employees_managers_managerId] FOREIGN KEY ([managerId]) REFERENCES [managers] ([managerId]) ON DELETE CASCADE
+);
+2023-01-12 15:31:52.076 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [attendances] (
+    [id] int NOT NULL IDENTITY,
+    [date] datetime2 NOT NULL,
+    [checkInTime] time NOT NULL,
+    [checkOutTime] time NULL,
+    [employeeId] int NOT NULL,
+    CONSTRAINT [PK_attendances] PRIMARY KEY ([id]),
+    CONSTRAINT [FK_attendances_employees_employeeId] FOREIGN KEY ([employeeId]) REFERENCES [employees] ([employeeId]) ON DELETE CASCADE
+);
+2023-01-12 15:31:52.077 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_attendances_employeeId] ON [attendances] ([employeeId]);
+2023-01-12 15:31:52.079 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_employees_managerId] ON [employees] ([managerId]);
+2023-01-12 15:31:52.081 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_managers_departmentId] ON [managers] ([departmentId]);
+2023-01-12 15:31:52.083 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20230112100023_migration_v1', N'7.0.1');
+2023-01-12 15:32:36.679 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-12 15:32:36.716 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-12 15:32:36.716 +05:30  INF  Hosting environment: Development
+2023-01-12 15:32:36.716 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-12 15:32:53.330 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 15:32:53.479 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 151.9042ms
+2023-01-12 15:32:53.504 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui.css - -
+2023-01-12 15:32:53.515 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - -
+2023-01-12 15:32:53.516 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - -
+2023-01-12 15:32:53.534 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-12 15:32:53.536 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-01-12 15:32:53.538 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-12 15:32:53.539 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 23.2348ms
+2023-01-12 15:32:53.540 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 24.9906ms
+2023-01-12 15:32:53.540 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui.css - - - 200 143943 text/css 35.9395ms
+2023-01-12 15:32:53.984 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 15:32:54.094 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 109.1712ms
+2023-01-12 15:33:15.611 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddDepartment application/json 34
+2023-01-12 15:33:15.620 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-12 15:33:15.629 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking)'
+2023-01-12 15:33:15.657 +05:30  INF  Route matched with {action = "AddDepartment", controller = "Department"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddDepartment(AttendanceTracking.Models.Department) on controller AttendanceTracking.Controllers.DepartmentController (AttendanceTracking).
+2023-01-12 15:33:18.088 +05:30  INF  Executed DbCommand (50ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 15:33:18.130 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 15:33:18.357 +05:30  INF  Executed DbCommand (10ms) [Parameters=[@p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [departments] ([departmentName])
+OUTPUT INSERTED.[departmentId]
+VALUES (@p0);
+2023-01-12 15:33:18.394 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:33:18.400 +05:30  INF  Executed action AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking) in 2736.2641ms
+2023-01-12 15:33:18.400 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking)'
+2023-01-12 15:33:18.413 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddDepartment application/json 34 - 200 0 - 2801.4306ms
+2023-01-12 15:33:51.522 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddManager application/json 93
+2023-01-12 15:33:51.523 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-12 15:33:51.532 +05:30  INF  Route matched with {action = "AddManager", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddManager(AttendanceTracking.Data.Models.ManagerVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-12 15:33:51.601 +05:30  INF  Executed DbCommand (8ms) [Parameters=[@__managerEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerEmail_0
+2023-01-12 15:33:51.610 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 15:33:51.686 +05:30  INF  Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [managers] ([departmentId], [managerEmail], [managerName])
+OUTPUT INSERTED.[managerId]
+VALUES (@p0, @p1, @p2);
+2023-01-12 15:33:51.694 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:33:51.694 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking) in 161.5378ms
+2023-01-12 15:33:51.694 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-12 15:33:51.695 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddManager application/json 93 - 200 0 - 173.4782ms
+2023-01-12 15:34:18.960 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddEmployee application/json 111
+2023-01-12 15:34:18.962 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking)'
+2023-01-12 15:34:18.966 +05:30  INF  Route matched with {action = "AddEmployee", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddEmployee(AttendanceTracking.Data.Models.EmployeeVM) on controller AttendanceTracking.Controllers.EmployeeController (AttendanceTracking).
+2023-01-12 15:34:19.110 +05:30  INF  Executed DbCommand (9ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:34:19.120 +05:30  INF  Executed DbCommand (7ms) [Parameters=[@__managerEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerEmail_0
+2023-01-12 15:34:19.151 +05:30  INF  Executed DbCommand (10ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [employees] ([employeeEmail], [employeeName], [managerId])
+OUTPUT INSERTED.[employeeId]
+VALUES (@p0, @p1, @p2);
+2023-01-12 15:34:19.155 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:34:19.155 +05:30  INF  Executed action AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking) in 188.2358ms
+2023-01-12 15:34:19.155 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.EmployeeController.AddEmployee (AttendanceTracking)'
+2023-01-12 15:34:19.155 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddEmployee application/json 111 - 200 0 - 195.1295ms
+2023-01-12 15:36:47.553 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41
+2023-01-12 15:36:47.558 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:36:47.572 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.Models.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:36:47.608 +05:30  INF  CheckInLog method called
+2023-01-12 15:36:47.639 +05:30  INF  Executed DbCommand (11ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:36:47.684 +05:30  INF  Executed DbCommand (13ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:36:47.771 +05:30  INF  Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = Time), @p1='?' (DbType = Time), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [attendances] ([checkInTime], [checkOutTime], [date], [employeeId])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3);
+2023-01-12 15:36:47.775 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:36:47.776 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 203.9304ms
+2023-01-12 15:36:47.776 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:36:47.777 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41 - 200 0 - 224.0150ms
+2023-01-12 15:38:16.054 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41
+2023-01-12 15:38:16.055 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:38:16.055 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.Models.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:38:16.058 +05:30  INF  CheckInLog method called
+2023-01-12 15:38:16.062 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:38:16.074 +05:30  INF  Executed DbCommand (11ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:38:16.084 +05:30  INF  Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2023-01-12 15:38:16.088 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 32.5997ms
+2023-01-12 15:38:16.088 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:38:16.088 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41 - 404 - application/problem+json;+charset=utf-8 34.5672ms
+2023-01-12 15:40:56.899 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41
+2023-01-12 15:40:56.917 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-12 15:40:56.932 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.Models.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:40:56.964 +05:30  INF  CheckOutLog method called
+2023-01-12 15:40:57.029 +05:30  INF  Executed DbCommand (19ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:40:57.043 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:40:57.125 +05:30  INF  Executed DbCommand (55ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (DbType = Time), @p1='?' (DbType = Time), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [attendances] SET [checkInTime] = @p0, [checkOutTime] = @p1, [date] = @p2, [employeeId] = @p3
+OUTPUT 1
+WHERE [id] = @p4;
+2023-01-12 15:40:57.133 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:40:57.133 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 201.3051ms
+2023-01-12 15:40:57.134 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-12 15:40:57.136 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41 - 200 0 - 242.1604ms
+2023-01-12 15:42:36.355 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41
+2023-01-12 15:42:36.356 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-12 15:42:36.356 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.Models.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:42:36.357 +05:30  INF  CheckOutLog method called
+2023-01-12 15:42:36.362 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:42:36.367 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:42:36.369 +05:30  INF  Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2023-01-12 15:42:36.370 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 13.7899ms
+2023-01-12 15:42:36.370 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-12 15:42:36.370 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/CheckOutLog application/json 41 - 404 - application/problem+json;+charset=utf-8 15.7620ms
+2023-01-12 15:51:09.929 +05:30  INF  Application is shutting down...
+2023-01-12 15:51:27.701 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-12 15:51:27.751 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-12 15:51:27.752 +05:30  INF  Hosting environment: Development
+2023-01-12 15:51:27.752 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-12 15:53:27.520 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 15:53:27.678 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 162.0990ms
+2023-01-12 15:53:28.272 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 15:53:28.412 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 139.6897ms
+2023-01-12 15:58:28.378 +05:30  INF  Application is shutting down...
+2023-01-12 15:58:39.923 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-12 15:58:39.975 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-12 15:58:39.976 +05:30  INF  Hosting environment: Development
+2023-01-12 15:58:39.976 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-12 15:58:54.519 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 15:58:54.655 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 138.7251ms
+2023-01-12 15:58:55.128 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 15:58:55.264 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 135.4170ms
+2023-01-12 15:59:05.537 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/GetAttendanceOfEmployee/magesh@gmail.com - -
+2023-01-12 15:59:05.543 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-12 15:59:05.548 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-12 15:59:05.566 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Models.Attendance] GetAttendanceOfEmployee(System.String) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:59:05.719 +05:30  INF  GetAttendanceOfEmployee method called
+2023-01-12 15:59:07.018 +05:30  INF  Executed DbCommand (34ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:59:07.113 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:59:07.163 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Models.Attendance, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-12 15:59:07.199 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 1627.8777ms
+2023-01-12 15:59:07.199 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-12 15:59:07.207 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/GetAttendanceOfEmployee/magesh@gmail.com - - - 200 - application/json;+charset=utf-8 1670.2177ms
+2023-01-12 15:59:27.647 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41
+2023-01-12 15:59:27.650 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:59:27.662 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.Models.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:59:27.735 +05:30  INF  CheckInLog method called
+2023-01-12 15:59:27.769 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:59:27.776 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:59:28.069 +05:30  INF  Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Time), @p1='?' (DbType = Time), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [attendances] ([checkInTime], [checkOutTime], [date], [employeeId])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3);
+2023-01-12 15:59:28.111 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 15:59:28.112 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 449.423ms
+2023-01-12 15:59:28.112 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-12 15:59:28.112 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/CheckInLog application/json 41 - 200 0 - 464.8709ms
+2023-01-12 15:59:34.492 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/GetAttendanceOfEmployee/magesh@gmail.com - -
+2023-01-12 15:59:34.492 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-12 15:59:34.492 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Models.Attendance] GetAttendanceOfEmployee(System.String) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-12 15:59:34.498 +05:30  INF  GetAttendanceOfEmployee method called
+2023-01-12 15:59:34.581 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId]
+FROM [employees] AS [e]
+WHERE [e].[employeeEmail] = @__employeeEmail_0
+2023-01-12 15:59:34.587 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-12 15:59:34.590 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Models.Attendance, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-12 15:59:34.590 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 97.8424ms
+2023-01-12 15:59:34.590 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-12 15:59:34.591 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/GetAttendanceOfEmployee/magesh@gmail.com - - - 200 - application/json;+charset=utf-8 98.6047ms
+2023-01-12 16:46:00.830 +05:30  INF  Application is shutting down...
+2023-01-12 16:49:47.783 +05:30  INF  Executed DbCommand (243ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 16:49:48.050 +05:30  INF  Executed DbCommand (234ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-12 16:49:48.274 +05:30  INF  Executed DbCommand (223ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 16:49:48.605 +05:30  INF  Executed DbCommand (248ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2023-01-12 16:49:48.828 +05:30  INF  Executed DbCommand (222ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-12 16:49:49.052 +05:30  INF  Executed DbCommand (224ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-12 16:49:49.293 +05:30  INF  Executed DbCommand (239ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-12 16:49:49.309 +05:30  INF  Applying migration '20230112111917_migration_v1'.
+2023-01-12 16:49:49.824 +05:30  INF  Executed DbCommand (223ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [departments] (
+    [departmentId] int NOT NULL IDENTITY,
+    [departmentName] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_departments] PRIMARY KEY ([departmentId])
+);
+2023-01-12 16:49:50.050 +05:30  INF  Executed DbCommand (225ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [managers] (
+    [managerId] int NOT NULL IDENTITY,
+    [managerName] nvarchar(max) NOT NULL,
+    [managerEmail] nvarchar(max) NOT NULL,
+    [departmentId] int NOT NULL,
+    CONSTRAINT [PK_managers] PRIMARY KEY ([managerId]),
+    CONSTRAINT [FK_managers_departments_departmentId] FOREIGN KEY ([departmentId]) REFERENCES [departments] ([departmentId]) ON DELETE CASCADE
+);
+2023-01-12 16:49:50.274 +05:30  INF  Executed DbCommand (224ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [employees] (
+    [employeeId] int NOT NULL IDENTITY,
+    [employeeName] nvarchar(max) NOT NULL,
+    [employeeEmail] nvarchar(max) NOT NULL,
+    [managerId] int NOT NULL,
+    CONSTRAINT [PK_employees] PRIMARY KEY ([employeeId]),
+    CONSTRAINT [FK_employees_managers_managerId] FOREIGN KEY ([managerId]) REFERENCES [managers] ([managerId]) ON DELETE CASCADE
+);
+2023-01-12 16:49:50.497 +05:30  INF  Executed DbCommand (224ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [attendances] (
+    [id] int NOT NULL IDENTITY,
+    [date] datetime2 NOT NULL,
+    [checkInTime] time NOT NULL,
+    [checkOutTime] time NULL,
+    [employeeId] int NOT NULL,
+    CONSTRAINT [PK_attendances] PRIMARY KEY ([id]),
+    CONSTRAINT [FK_attendances_employees_employeeId] FOREIGN KEY ([employeeId]) REFERENCES [employees] ([employeeId]) ON DELETE CASCADE
+);
+2023-01-12 16:49:50.720 +05:30  INF  Executed DbCommand (223ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_attendances_employeeId] ON [attendances] ([employeeId]);
+2023-01-12 16:49:50.943 +05:30  INF  Executed DbCommand (223ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_employees_managerId] ON [employees] ([managerId]);
+2023-01-12 16:49:51.176 +05:30  INF  Executed DbCommand (233ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_managers_departmentId] ON [managers] ([departmentId]);
+2023-01-12 16:49:51.401 +05:30  INF  Executed DbCommand (224ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20230112111917_migration_v1', N'7.0.1');
+2023-01-12 16:50:32.502 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-12 16:50:32.671 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-12 16:50:32.672 +05:30  INF  Hosting environment: Development
+2023-01-12 16:50:32.672 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-12 16:51:19.921 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 16:51:20.246 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 335.1395ms
+2023-01-12 16:51:20.828 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 16:51:20.951 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 123.1104ms
+2023-01-12 16:51:43.111 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddDepartment application/json 32
+2023-01-12 16:51:43.121 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-12 16:51:43.132 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking)'
+2023-01-12 16:51:43.180 +05:30  INF  Route matched with {action = "AddDepartment", controller = "Department"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddDepartment(AttendanceTracking.Models.Department) on controller AttendanceTracking.Controllers.DepartmentController (AttendanceTracking).
+2023-01-12 16:51:47.416 +05:30  INF  Executed DbCommand (269ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 16:51:47.690 +05:30  INF  Executed DbCommand (226ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 16:51:48.188 +05:30  INF  Executed DbCommand (255ms) [Parameters=[@p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [departments] ([departmentName])
+OUTPUT INSERTED.[departmentId]
+VALUES (@p0);
+2023-01-12 16:51:48.233 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 16:51:48.238 +05:30  INF  Executed action AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking) in 5052.3533ms
+2023-01-12 16:51:48.239 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.DepartmentController.AddDepartment (AttendanceTracking)'
+2023-01-12 16:51:48.255 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddDepartment application/json 32 - 200 0 - 5144.1303ms
+2023-01-12 22:24:05.906 +05:30  INF  Application is shutting down...
+2023-01-12 22:24:33.441 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-12 22:24:33.471 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-12 22:24:33.472 +05:30  INF  Hosting environment: Development
+2023-01-12 22:24:33.472 +05:30  INF  Content root path: /Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking
+2023-01-12 22:24:35.988 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 22:24:36.168 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 182.4249ms
+2023-01-12 22:24:36.189 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - -
+2023-01-12 22:24:36.191 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - -
+2023-01-12 22:24:36.219 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-12 22:24:36.219 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-12 22:24:36.222 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 30.9363ms
+2023-01-12 22:24:36.222 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 33.5517ms
+2023-01-12 22:24:36.799 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 22:24:36.942 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 143.7392ms
+2023-01-12 22:24:42.503 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-12 22:24:42.504 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 0.8533ms
+2023-01-12 22:24:42.701 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-12 22:24:42.708 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 6.9977ms
+2023-01-12 22:28:08.756 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/AddManager application/json 93
+2023-01-12 22:28:08.767 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-12 22:28:08.780 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-12 22:28:08.836 +05:30  INF  Route matched with {action = "AddManager", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddManager(AttendanceTracking.Data.Models.ManagerVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-12 22:28:12.973 +05:30  INF  Executed DbCommand (276ms) [Parameters=[@__managerEmail_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerEmail_0
+2023-01-12 22:28:13.250 +05:30  INF  Executed DbCommand (225ms) [Parameters=[@__departmentName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+WHERE [d].[departmentName] = @__departmentName_0
+2023-01-12 22:28:13.837 +05:30  INF  Executed DbCommand (274ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [managers] ([departmentId], [managerEmail], [managerName])
+OUTPUT INSERTED.[managerId]
+VALUES (@p0, @p1, @p2);
+2023-01-12 22:28:13.872 +05:30  INF  Executing StatusCodeResult, setting HTTP status code 200
+2023-01-12 22:28:13.878 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking) in 5035.8721ms
+2023-01-12 22:28:13.879 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.AddManager (AttendanceTracking)'
+2023-01-12 22:28:13.894 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/AddManager application/json 93 - 200 0 - 5138.4480ms

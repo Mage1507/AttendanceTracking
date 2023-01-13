@@ -73,8 +73,8 @@ namespace AttendanceTracking.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    checkInTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    checkOutTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    checkInTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    checkOutTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     employeeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -45,8 +45,8 @@ namespace AttendanceTracking.Services
                     Attendance attendance = new Attendance()
                     {
                         employeeId = employeeId,
-                        date = checkInTimeVM.date,
-                        checkInTime = checkInTimeVM.checkInTime,
+                        date = DateTime.Now.Date,
+                        checkInTime = DateTime.Now.TimeOfDay,
                     };
                     _dbContext.attendances.Add(attendance);
                     _dbContext.SaveChanges();
@@ -81,7 +81,7 @@ namespace AttendanceTracking.Services
                     string date = att.date.ToShortDateString();
                     if (date == DateTime.Now.ToShortDateString() && att.checkOutTime == null)
                     {
-                        att.checkOutTime = checkOutTimeVM.checkOutTime;
+                        att.checkOutTime = DateTime.Now.TimeOfDay;
                         _dbContext.attendances.Update(att);
                         _dbContext.SaveChanges();
                         count++;
@@ -105,6 +105,13 @@ namespace AttendanceTracking.Services
             }
         }
 
+
+        public List<Attendance> GetAttendanceOfEmployee(string employeeEmail)
+        {
+            var employeeId = _employeeService.GetEmployeeId(employeeEmail);
+            var attendanceList = GetAttendanceListByEmployeeId(employeeId);
+            return attendanceList;
+        }
         public List<Attendance> GetAttendanceListByEmployeeId(int employeeId)
         {
             var attendanceList = _dbContext.attendances.Where(a => a.employeeId == employeeId).ToList();
