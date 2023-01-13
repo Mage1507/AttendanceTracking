@@ -30,11 +30,11 @@ namespace AttendanceTracking.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<TimeSpan>("checkInTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("checkInTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("checkOutTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("checkOutTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");

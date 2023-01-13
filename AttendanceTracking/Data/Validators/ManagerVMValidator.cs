@@ -1,5 +1,5 @@
 ﻿using System;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Services;
 using FluentValidation;
 
@@ -13,21 +13,11 @@ namespace AttendanceTracking.Data.Validators
 		{
 			_managerService = managerService;
 			RuleFor(c => c.managerName).NotEmpty().WithMessage("Manager name is required");
-            RuleFor(c => c.managerEmail).NotEmpty().WithMessage("Manager email is required").EmailAddress().WithMessage("Manager email is not valid").Must(UniqueEmail).WithMessage("Manager email already exist");
+            RuleFor(c => c.managerEmail).NotEmpty().WithMessage("Manager email is required").EmailAddress().WithMessage("Manager email is not valid");
 			RuleFor(c => c.departmentName).NotEmpty().WithMessage("Department name is required");
         }
 
-		public bool UniqueEmail(string managerEmail)
-		{
-			if (_managerService.IsManagerEmailExist(managerEmail))
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+	
 		
 	}
 }

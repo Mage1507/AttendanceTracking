@@ -1,7 +1,7 @@
 ﻿using System;
 using AttendanceTracking.Data;
 using AttendanceTracking.Models;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 
 namespace AttendanceTracking.Services
 {
@@ -26,16 +26,23 @@ namespace AttendanceTracking.Services
             }
             try
             {
-                var departmentId = _departmentService.GetDepartmentId(managerVM.departmentName);
-                Manager manager = new Manager()
+                if (IsManagerEmailExist(managerVM.managerEmail))
                 {
-                    managerName = managerVM.managerName,
-                    managerEmail = managerVM.managerEmail,
-                    departmentId = departmentId
-                };
-                _dbContext.managers.Add(manager);
-                _dbContext.SaveChanges();
-                return true;
+                    return false;
+                }
+                else
+                {
+                    var departmentId = _departmentService.GetDepartmentId(managerVM.departmentName);
+                    Manager manager = new Manager()
+                    {
+                        managerName = managerVM.managerName,
+                        managerEmail = managerVM.managerEmail,
+                        departmentId = departmentId
+                    };
+                    _dbContext.managers.Add(manager);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception ex)
             {

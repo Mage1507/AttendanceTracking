@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Mvc;
 

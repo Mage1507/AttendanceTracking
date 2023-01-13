@@ -1,6 +1,6 @@
 ﻿using System;
 using AttendanceTracking.Data;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 
 namespace AttendanceTracking.Services
@@ -12,12 +12,15 @@ namespace AttendanceTracking.Services
 
         private readonly EmployeeService _employeeService;
 
+        private readonly ManagerService _managerService;
+
         private readonly ILogger<AttendanceService> _logger;
 
-        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService, ILogger<AttendanceService> logger)
+        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService,ManagerService manager ,ILogger<AttendanceService> logger)
         {
             _dbContext = dbContext;
             _employeeService = employeeService;
+            _managerService = manager;
             _logger = logger;
         }
 
@@ -46,7 +49,7 @@ namespace AttendanceTracking.Services
                     {
                         employeeId = employeeId,
                         date = DateTime.Now.Date,
-                        checkInTime = DateTime.Now.TimeOfDay,
+                        checkInTime = DateTime.UtcNow
                     };
                     _dbContext.attendances.Add(attendance);
                     _dbContext.SaveChanges();
@@ -81,7 +84,8 @@ namespace AttendanceTracking.Services
                     string date = att.date.ToShortDateString();
                     if (date == DateTime.Now.ToShortDateString() && att.checkOutTime == null)
                     {
-                        att.checkOutTime = DateTime.Now.TimeOfDay;
+                       
+                        att.checkOutTime = DateTime.UtcNow;
                         _dbContext.attendances.Update(att);
                         _dbContext.SaveChanges();
                         count++;
@@ -106,12 +110,34 @@ namespace AttendanceTracking.Services
         }
 
 
-        public List<Attendance> GetAttendanceOfEmployee(string employeeEmail)
+        public List<Attendance> GetAttendanceOfEmployee(string managerEmail,DateTime date,DateTime fromTime,DateTime toTime)
         {
-            var employeeId = _employeeService.GetEmployeeId(employeeEmail);
-            var attendanceList = GetAttendanceListByEmployeeId(employeeId);
+            var managerId = _managerService.GetManagerId(managerEmail);
+            var employeeList = GetAttendanceListByManagerId(managerId);
+            var attendanceList = new List<Attendance>();
+            //get attendance list by employee id
+            foreach (var emp in employeeList)
+            {
+                var attendance = GetAttendanceListByEmployeeId(emp.employeeId);
+                foreach (var att in attendance)
+                {
+                    if (att.date == date && att.checkInTime.ToLocalTime() >= fromTime && att.checkOutTime?.ToLocalTime() <= toTime)
+                    {
+                        att.totalHours = (att?.checkOutTime - att.checkInTime)?.Duration();
+                        attendanceList.Add(att);
+                    }
+                }
+            }
+
             return attendanceList;
+
         }
+        public List<Employee> GetAttendanceListByManagerId(int managerId)
+        {
+            var employeeList = _employeeService.GetEmployeeListByManagerId(managerId);
+            return employeeList;
+        }
+
         public List<Attendance> GetAttendanceListByEmployeeId(int employeeId)
         {
             var attendanceList = _dbContext.attendances.Where(a => a.employeeId == employeeId).ToList();

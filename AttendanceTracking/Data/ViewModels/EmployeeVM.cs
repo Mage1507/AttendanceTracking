@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AttendanceTracking.Data.Models
+namespace AttendanceTracking.Data.ViewModels
 {
     public class EmployeeVM
     {

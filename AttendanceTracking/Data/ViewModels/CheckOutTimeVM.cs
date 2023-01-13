@@ -1,5 +1,5 @@
 ﻿using System;
-namespace AttendanceTracking.Data.Models
+namespace AttendanceTracking.Data.ViewModels
 {
 	public class CheckOutTimeVM
 	{

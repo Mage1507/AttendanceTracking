@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -57,14 +57,14 @@ namespace AttendanceTracking.Controllers
             }
         }
 
-        [Route("[Action]/{employeeEmail}")]
+        [Route("[Action]/{managerEmail}/{date}/{fromTime}/{toTime}")]
         [HttpGet]
-        public List<Attendance> GetAttendanceOfEmployee(string employeeEmail)
+        public List<Attendance> GetAttendanceOfEmployee(string managerEmail, DateTime date, DateTime fromTime, DateTime toTime)
         {
             _logger.LogInformation("GetAttendanceOfEmployee method called");
             try
             {
-                var attendance = _attendanceService.GetAttendanceOfEmployee(employeeEmail);
+                var attendance = _attendanceService.GetAttendanceOfEmployee(managerEmail, date, fromTime, toTime);
                 return attendance;
             }
             catch (Exception e)

@@ -1,5 +1,5 @@
 ﻿using System;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Services;
 using FluentValidation;
 

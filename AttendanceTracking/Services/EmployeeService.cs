@@ -1,6 +1,6 @@
 ﻿using System;
 using AttendanceTracking.Data;
-using AttendanceTracking.Data.Models;
+using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 
 namespace AttendanceTracking.Services
@@ -27,16 +27,23 @@ namespace AttendanceTracking.Services
             }
             try
             {
-                var managerId = _managerService.GetManagerId(employeeVM.managerEmail);
-                Employee employee = new Employee()
+                if (IsEmployeeEmailExist(employeeVM.employeeEmail))
                 {
-                    employeeName = employeeVM.employeeName,
-                    employeeEmail = employeeVM.employeeEmail,
-                    managerId = managerId
-                };
-                _dbContext.employees.Add(employee);
-                _dbContext.SaveChanges();
-                return true;
+                    return false;
+                }
+                else
+                {
+                    var managerId = _managerService.GetManagerId(employeeVM.managerEmail);
+                    Employee employee = new Employee()
+                    {
+                        employeeName = employeeVM.employeeName,
+                        employeeEmail = employeeVM.employeeEmail,
+                        managerId = managerId
+                    };
+                    _dbContext.employees.Add(employee);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -49,6 +56,12 @@ namespace AttendanceTracking.Services
         {
             var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
             return employee.employeeId;
+        }
+
+        public List<Employee> GetEmployeeListByManagerId(int managerId)
+        {
+            var employeeList = _dbContext.employees.Where(e => e.managerId == managerId).ToList();
+            return employeeList;
         }
 
         public bool IsEmployeeEmailExist(string employeeEmail)
