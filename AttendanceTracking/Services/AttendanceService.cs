@@ -16,7 +16,7 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<AttendanceService> _logger;
 
-        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService,ManagerService manager ,ILogger<AttendanceService> logger)
+        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService, ManagerService manager, ILogger<AttendanceService> logger)
         {
             _dbContext = dbContext;
             _employeeService = employeeService;
@@ -84,7 +84,7 @@ namespace AttendanceTracking.Services
                     string date = att.date.ToShortDateString();
                     if (date == DateTime.Now.ToShortDateString() && att.checkOutTime == null)
                     {
-                       
+
                         att.checkOutTime = DateTime.UtcNow;
                         _dbContext.attendances.Update(att);
                         _dbContext.SaveChanges();
@@ -110,7 +110,7 @@ namespace AttendanceTracking.Services
         }
 
 
-        public List<Attendance> GetAttendanceOfEmployee(string managerEmail,DateTime date,DateTime fromTime,DateTime toTime)
+        public List<Attendance> GetAttendanceOfEmployee(string managerEmail, DateTime date, DateTime fromTime, DateTime toTime)
         {
             var managerId = _managerService.GetManagerId(managerEmail);
             var employeeList = GetAttendanceListByManagerId(managerId);
@@ -118,14 +118,23 @@ namespace AttendanceTracking.Services
             //get attendance list by employee id
             foreach (var emp in employeeList)
             {
+                TimeSpan? ts = new TimeSpan(0, 0, 0);
                 var attendance = GetAttendanceListByEmployeeId(emp.employeeId);
                 foreach (var att in attendance)
                 {
+                    _logger.LogInformation("CheckOut Time:" + att.checkOutTime?.ToLocalTime() + "CheckIn Time:" + att.checkInTime.ToLocalTime());
+
                     if (att.date == date && att.checkInTime.ToLocalTime() >= fromTime && att.checkOutTime?.ToLocalTime() <= toTime)
                     {
-                        att.totalHours = (att?.checkOutTime - att.checkInTime)?.Duration();
+                        att.totalPresentTime = att.checkOutTime?.ToLocalTime() - att.checkInTime.ToLocalTime();
+                        _logger.LogInformation("Total Present Time:" + att.totalPresentTime);
+                         ts = ts+att.totalPresentTime;
+                        _logger.LogInformation("Total Present Time:" + ts);
+                        att.totalHoursInOffice = ts;
                         attendanceList.Add(att);
                     }
+                   
+
                 }
             }
 
