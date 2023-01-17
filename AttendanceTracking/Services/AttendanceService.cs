@@ -33,8 +33,7 @@ namespace AttendanceTracking.Services
             }
             try
             {
-                var employeeId = _employeeService.GetEmployeeId(checkInTimeVM.employeeEmail);
-                var attendanceList = GetAttendanceListByEmployeeId(employeeId);
+                var attendanceList = GetAttendanceListByEmployeeId(checkInTimeVM.employeeId);
                 foreach (var att in attendanceList)
                 {
                     string date = att.date.ToShortDateString();
@@ -47,7 +46,7 @@ namespace AttendanceTracking.Services
                 {
                     Attendance attendance = new Attendance()
                     {
-                        employeeId = employeeId,
+                        employeeId = checkInTimeVM.employeeId,
                         date = DateTime.Now.Date,
                         checkInTime = DateTime.UtcNow
                     };
@@ -77,8 +76,8 @@ namespace AttendanceTracking.Services
             }
             try
             {
-                var employeeId = _employeeService.GetEmployeeId(checkOutTimeVM.employeeEmail);
-                var attendanceList = GetAttendanceListByEmployeeId(employeeId);
+              
+                var attendanceList = GetAttendanceListByEmployeeId(checkOutTimeVM.employeeId);
                 foreach (var att in attendanceList)
                 {
                     string date = att.date.ToShortDateString();
@@ -110,9 +109,8 @@ namespace AttendanceTracking.Services
         }
 
 
-        public List<Attendance> GetAttendanceOfEmployee(string managerEmail, DateTime date, DateTime fromTime, DateTime toTime)
+        public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
-            var managerId = _managerService.GetManagerId(managerEmail);
             var employeeList = GetAttendanceListByManagerId(managerId);
             var attendanceList = new List<Attendance>();
             //get attendance list by employee id

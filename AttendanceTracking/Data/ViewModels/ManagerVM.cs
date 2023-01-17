@@ -7,7 +7,7 @@ namespace AttendanceTracking.Data.ViewModels
 	{
 		public string managerName { get; set; }
 		public string managerEmail { get; set; }
-		public string departmentName { get; set; }
+		public int departmentId { get; set; }
 	}
 }
 

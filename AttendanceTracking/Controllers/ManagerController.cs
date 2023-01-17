@@ -22,7 +22,7 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult AddManager(ManagerVM managerVM)
+        public IActionResult AddManager([FromBody]ManagerVM managerVM)
         {
             var addManager = _managerService.AddManager(managerVM);
             if (addManager)

@@ -15,7 +15,7 @@ namespace AttendanceTracking.Data.Validators
             _employeeService = employeeService;
             RuleFor(c => c.employeeName).NotEmpty().WithMessage("Employee name is required");
             RuleFor(c => c.employeeEmail).NotEmpty().WithMessage("Employee email is required").EmailAddress().WithMessage("Employee email is not valid");
-            RuleFor(c => c.managerEmail).NotEmpty().WithMessage("Manager email is required").EmailAddress().WithMessage("Manager email is not valid");
+            RuleFor(c => c.managerId).NotEmpty().WithMessage("Manager id is required");
         }
     }
 }

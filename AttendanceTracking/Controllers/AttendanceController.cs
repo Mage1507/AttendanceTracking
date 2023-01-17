@@ -57,14 +57,14 @@ namespace AttendanceTracking.Controllers
             }
         }
 
-        [Route("[Action]/{managerEmail}/{date}/{fromTime}/{toTime}")]
+        [Route("[Action]/{managerId}/{date}/{fromTime}/{toTime}")]
         [HttpGet]
-        public List<Attendance> GetAttendanceOfEmployee(string managerEmail, DateTime date, DateTime fromTime, DateTime toTime)
+        public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
             _logger.LogInformation("GetAttendanceOfEmployee method called");
             try
             {
-                var attendance = _attendanceService.GetAttendanceOfEmployee(managerEmail, date, fromTime, toTime);
+                var attendance = _attendanceService.GetAttendanceOfEmployee(managerId, date, fromTime, toTime);
                 return attendance;
             }
             catch (Exception e)

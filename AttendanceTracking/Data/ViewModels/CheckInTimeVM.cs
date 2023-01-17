@@ -5,7 +5,7 @@ namespace AttendanceTracking.Data.ViewModels
 {
     public class CheckInTimeVM
     {
-        public string employeeEmail { get; set; }
+        public int employeeId { get; set; }
     }
 }
 

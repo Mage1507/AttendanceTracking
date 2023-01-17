@@ -2,16 +2,21 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.AttendanceTracking PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AttendanceTracking/Data/Profiles/AttendanceProfile.cs">
+    <Files>
+      <File FileName="AttendanceTracking/Data/Profiles/AttendanceProfile.cs" Line="7" Column="4" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="AttendanceTracking" expanded="True" selected="True">
+          <Node name="AttendanceTracking" expanded="True">
             <Node name="AttendanceTracking" expanded="True">
               <Node name="Data" expanded="True">
-                <Node name="Models" expanded="True" />
+                <Node name="Profiles" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -19,6 +24,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
 </Properties>

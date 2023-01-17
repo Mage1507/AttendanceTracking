@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj": {}
+    "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj": {}
   },
   "projects": {
-    "/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj": {
+    "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
+        "projectUniqueName": "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
         "projectName": "AttendanceTracking",
-        "projectPath": "/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
-        "packagesPath": "/Users/mageshkumarn/.nuget/packages/",
-        "outputPath": "/Users/mageshkumarn/Documents/AttendanceTracking/AttendanceTracking/obj/",
+        "projectPath": "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
+        "packagesPath": "/Users/presidio_cbe/.nuget/packages/",
+        "outputPath": "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mageshkumarn/.nuget/NuGet/NuGet.Config"
+          "/Users/presidio_cbe/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -38,6 +38,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Azure.Extensions.AspNetCore.Configuration.Secrets": {
               "target": "Package",
               "version": "[1.2.2, )"

@@ -2,6 +2,7 @@
 using AttendanceTracking.Data;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
+using AutoMapper;
 
 namespace AttendanceTracking.Services
 {
@@ -11,12 +12,15 @@ namespace AttendanceTracking.Services
 
         private ManagerService _managerService;
 
+        private readonly IMapper _mapper;
+
         private readonly ILogger<EmployeeService> _logger;
-        public EmployeeService(DbInitializer dbContext, ManagerService managerService, ILogger<EmployeeService> logger)
+        public EmployeeService(DbInitializer dbContext, ManagerService managerService, ILogger<EmployeeService> logger, IMapper mapper)
         {
             _dbContext = dbContext;
             _managerService = managerService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public bool AddEmployee(EmployeeVM employeeVM)
@@ -33,14 +37,9 @@ namespace AttendanceTracking.Services
                 }
                 else
                 {
-                    var managerId = _managerService.GetManagerId(employeeVM.managerEmail);
-                    Employee employee = new Employee()
-                    {
-                        employeeName = employeeVM.employeeName,
-                        employeeEmail = employeeVM.employeeEmail,
-                        managerId = managerId
-                    };
-                    _dbContext.employees.Add(employee);
+
+                    var mappedEmployee = _mapper.Map<Employee>(employeeVM);
+                    _dbContext.employees.Add(mappedEmployee);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -52,11 +51,7 @@ namespace AttendanceTracking.Services
             }
         }
 
-        public int GetEmployeeId(string employeeEmail)
-        {
-            var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
-            return employee.employeeId;
-        }
+
 
         public List<Employee> GetEmployeeListByManagerId(int managerId)
         {

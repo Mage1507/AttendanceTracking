@@ -2,6 +2,7 @@
 using AttendanceTracking.Data;
 using AttendanceTracking.Models;
 using AttendanceTracking.Data.ViewModels;
+using AutoMapper;
 
 namespace AttendanceTracking.Services
 {
@@ -11,12 +12,15 @@ namespace AttendanceTracking.Services
 
         public DepartmentService _departmentService;
 
+        private readonly IMapper _mapper;
+
         private readonly ILogger<ManagerService> _logger;
-        public ManagerService(DbInitializer dbContext, DepartmentService departmentService, ILogger<ManagerService> logger)
+        public ManagerService(DbInitializer dbContext, DepartmentService departmentService, ILogger<ManagerService> logger, IMapper mapper)
         {
             _dbContext = dbContext;
             _departmentService = departmentService;
             _logger = logger;
+            _mapper = mapper;
         }
         public bool AddManager(ManagerVM managerVM)
         {
@@ -32,14 +36,9 @@ namespace AttendanceTracking.Services
                 }
                 else
                 {
-                    var departmentId = _departmentService.GetDepartmentId(managerVM.departmentName);
-                    Manager manager = new Manager()
-                    {
-                        managerName = managerVM.managerName,
-                        managerEmail = managerVM.managerEmail,
-                        departmentId = departmentId
-                    };
-                    _dbContext.managers.Add(manager);
+
+                    var mappedManager = _mapper.Map<Manager>(managerVM);
+                    _dbContext.managers.Add(mappedManager);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -51,11 +50,7 @@ namespace AttendanceTracking.Services
             }
         }
 
-        public int GetManagerId(string managerEmail)
-        {
-            var manager = _dbContext.managers.Where(m => m.managerEmail == managerEmail).FirstOrDefault();
-            return manager.managerId;
-        }
+
 
         public bool IsManagerEmailExist(string managerEmail)
         {

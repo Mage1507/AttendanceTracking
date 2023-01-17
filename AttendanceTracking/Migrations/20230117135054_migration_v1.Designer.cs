@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceTracking.Migrations
 {
     [DbContext(typeof(DbInitializer))]
-    [Migration("20230113170220_migration_v1")]
+    [Migration("20230117135054_migration_v1")]
     partial class migrationv1
     {
         /// <inheritdoc />

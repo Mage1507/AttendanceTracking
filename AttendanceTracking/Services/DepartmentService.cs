@@ -35,17 +35,13 @@ namespace AttendanceTracking.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError("Exception in Add Department Method : "+ex.Message);
+                _logger.LogError("Exception in Add Department Method : " + ex.Message);
                 return false;
             }
 
         }
 
-        public int GetDepartmentId(string departmentName)
-        {
-            var department = _dbContext.departments.Where(d => d.departmentName == departmentName).FirstOrDefault();
-            return department.departmentId;
-        }
+
 
         public bool IsDepartmentNameExist(string departmentName)
         {
