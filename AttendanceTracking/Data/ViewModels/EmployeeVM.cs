@@ -9,6 +9,8 @@ namespace AttendanceTracking.Data.ViewModels
 
         public string employeeEmail { get; set; }
 
+        public IFormFile profileImageUrl { get; set; }
+
         public int managerId { get; set; }
     }
 }

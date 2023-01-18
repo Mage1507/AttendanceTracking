@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z1x18IOLQ4J3p958Uuq+WZ1K5po/CH6drDY5NB3/c7YAftv45tRv5Cw2VMYw0ZYuau3eLwL4OkwWwiL2CKyOGg==",
+  "dgSpecHash": "bbemv+r1iDx5Lg7wBAfwKofOmQLHyUMtjwyjxiSI5b5TiPrEn84HAdokeRWSh2fmHmfh06DrNPgR2RAxhGAsBg==",
   "success": true,
   "projectFilePath": "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "/Users/presidio_cbe/.nuget/packages/azure.extensions.aspnetcore.configuration.secrets/1.2.2/azure.extensions.aspnetcore.configuration.secrets.1.2.2.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/azure.identity/1.8.0/azure.identity.1.8.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/azure.security.keyvault.secrets/4.4.0/azure.security.keyvault.secrets.4.4.0.nupkg.sha512",
+    "/Users/presidio_cbe/.nuget/packages/azure.storage.blobs/12.14.1/azure.storage.blobs.12.14.1.nupkg.sha512",
+    "/Users/presidio_cbe/.nuget/packages/azure.storage.common/12.13.0/azure.storage.common.12.13.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/fluentvalidation/11.2.1/fluentvalidation.11.2.1.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/fluentvalidation.aspnetcore/11.2.2/fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.2.1/fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
@@ -54,6 +56,7 @@
     "/Users/presidio_cbe/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "/Users/presidio_cbe/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.17.0/microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
@@ -80,6 +83,7 @@
     "/Users/presidio_cbe/.nuget/packages/system.identitymodel.tokens.jwt/6.21.0/system.identitymodel.tokens.jwt.6.21.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/system.io.filesystem.accesscontrol/5.0.0/system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
+    "/Users/presidio_cbe/.nuget/packages/system.io.hashing/6.0.0/system.io.hashing.6.0.0.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",

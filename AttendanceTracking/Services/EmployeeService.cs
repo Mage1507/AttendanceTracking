@@ -3,6 +3,7 @@ using AttendanceTracking.Data;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
+using Azure.Storage.Blobs;
 
 namespace AttendanceTracking.Services
 {
@@ -15,12 +16,19 @@ namespace AttendanceTracking.Services
         private readonly IMapper _mapper;
 
         private readonly ILogger<EmployeeService> _logger;
-        public EmployeeService(DbInitializer dbContext, ManagerService managerService, ILogger<EmployeeService> logger, IMapper mapper)
+
+        private readonly string _storageConnectionString;
+
+        private readonly string _storageContainerName;
+        public EmployeeService(DbInitializer dbContext, ManagerService managerService, ILogger<EmployeeService> logger, IMapper mapper, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _managerService = managerService;
             _logger = logger;
             _mapper = mapper;
+            _storageConnectionString = configuration.GetValue<string>("BlobConnectionString");
+            _storageContainerName = configuration.GetValue<string>("BlobContainerName");
+
         }
 
         public bool AddEmployee(EmployeeVM employeeVM)
@@ -29,6 +37,7 @@ namespace AttendanceTracking.Services
             {
                 return false;
             }
+            BlobContainerClient container = new BlobContainerClient(_storageConnectionString, _storageContainerName);
             try
             {
                 if (IsEmployeeEmailExist(employeeVM.employeeEmail))
@@ -38,10 +47,24 @@ namespace AttendanceTracking.Services
                 else
                 {
 
-                    var mappedEmployee = _mapper.Map<Employee>(employeeVM);
-                    _dbContext.employees.Add(mappedEmployee);
-                    _dbContext.SaveChanges();
-                    return true;
+
+                    BlobClient client = container.GetBlobClient(employeeVM.employeeEmail.Split('@')[0]+Path.GetExtension(employeeVM.profileImageUrl.FileName));
+
+                    using (Stream? data = employeeVM.profileImageUrl.OpenReadStream())
+                    {
+                        client.Upload(data);
+                    }
+                    if (client.Uri.AbsoluteUri != null)
+                    {
+                        var mappedEmployee = _mapper.Map<Employee>(employeeVM);
+                        mappedEmployee.profileImageUrl = client.Uri.AbsoluteUri;
+                        _dbContext.employees.Add(mappedEmployee);
+                        _dbContext.SaveChanges();
+                        return true;
+
+                    }
+                    return false;
+
                 }
             }
             catch (Exception ex)

@@ -18,9 +18,9 @@ internal class Program
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(logger);
 
-        // builder.Configuration.AddAzureKeyVault(
-        // new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
-        // new DefaultAzureCredential());
+        builder.Configuration.AddAzureKeyVault(
+        new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+        new DefaultAzureCredential());
 
         builder.Services.AddControllers().AddFluentValidation(c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
