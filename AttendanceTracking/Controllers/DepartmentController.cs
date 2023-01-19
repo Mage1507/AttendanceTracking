@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
-
+using AttendanceTracking.Data.Constants;
 
 namespace AttendanceTracking.Controllers
 {
@@ -27,11 +27,11 @@ namespace AttendanceTracking.Controllers
 
             if (addDepartment)
             {
-                return Ok("Department Added Successfully");
+                return Ok(ResponseConstants.DepartmentAddedSuccessfully);
             }
             else
             {
-                return NotFound("Department Already Exists");
+                return NotFound(ResponseConstants.DepartmentNotAdded);
             }
 
         }

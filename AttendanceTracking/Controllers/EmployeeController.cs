@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AttendanceTracking.Data.Constants;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -28,11 +29,11 @@ namespace AttendanceTracking.Controllers
             var addEmployee = _employeeService.AddEmployee(employeeVM);
             if (addEmployee)
             {
-                return Ok("Employee Added Successfully");
+                return Ok(ResponseConstants.EmployeeAddedSuccessfully);
             }
             else
             {
-                return NotFound("Employee Already Exists or Check Manager Email");
+                return NotFound(ResponseConstants.EmployeeNotAdded);
             }
         }
     }

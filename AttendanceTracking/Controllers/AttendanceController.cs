@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AttendanceTracking.Data.Constants;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
@@ -33,11 +34,11 @@ namespace AttendanceTracking.Controllers
             var checkInLog = _attendanceService.LogCheckIn(checkInTimeVM);
             if (checkInLog)
             {
-                return Ok("CheckInTime Logged Successfully");
+                return Ok(ResponseConstants.LogCheckInSuccessfully);
             }
             else
             {
-                return NotFound("Check Email or Already CheckInTime");
+                return NotFound(ResponseConstants.LogCheckInNotSuccessfully);
             }
         }
 
@@ -49,11 +50,11 @@ namespace AttendanceTracking.Controllers
             var checkOutLog = _attendanceService.LogCheckOut(checkOutTimeVM);
             if (checkOutLog)
             {
-                return Ok("CheckOutTime Logged Successfully");
+                return Ok(ResponseConstants.LogCheckOutSuccessfully);
             }
             else
             {
-                return NotFound("Check Email or No CheckInTime");
+                return NotFound(ResponseConstants.LogCheckOutNotSuccessfully);
             }
         }
 

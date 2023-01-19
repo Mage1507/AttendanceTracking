@@ -6,6 +6,7 @@ using AttendanceTracking.Models;
 using AttendanceTracking.Services;
 using AttendanceTracking.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using AttendanceTracking.Data.Constants;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,11 +28,11 @@ namespace AttendanceTracking.Controllers
             var addManager = _managerService.AddManager(managerVM);
             if (addManager)
             {
-                return Ok("Manager Added Successfully");
+                return Ok(ResponseConstants.ManagerAddedSuccessfully);
             }
             else
             {
-                return NotFound("Manager Already Exists or Check Department Name");
+                return NotFound(ResponseConstants.ManagerNotAdded);
             }
         }
     }

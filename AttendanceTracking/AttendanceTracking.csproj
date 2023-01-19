@@ -46,6 +46,7 @@
     <None Remove="Data\Profiles\" />
     <None Remove="Azure.Storage.Blobs" />
     <None Remove="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <None Remove="Data\Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -53,5 +54,6 @@
     <Folder Include="Services\" />
     <Folder Include="Data\Validators\" />
     <Folder Include="Data\Profiles\" />
+    <Folder Include="Data\Constants\" />
   </ItemGroup>
 </Project>
