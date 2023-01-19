@@ -14,6 +14,7 @@ namespace AttendanceTracking.Controllers
 {
 
     [ApiController]
+    [Route("[controller]")]
     public class AttendanceController : Controller
     {
 

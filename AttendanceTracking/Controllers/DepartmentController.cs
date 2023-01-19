@@ -10,6 +10,7 @@ using AttendanceTracking.Data.Constants;
 namespace AttendanceTracking.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class DepartmentController : Controller
     {
         private readonly DepartmentService _departmentService;
@@ -34,6 +35,21 @@ namespace AttendanceTracking.Controllers
                 return NotFound(ResponseConstants.DepartmentNotAdded);
             }
 
+        }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetAllDepartments()
+        {
+            var departments = _departmentService.GetAllDepartments();
+            if (departments != null)
+            {
+                return Ok(departments);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.NoDepartmentsFound);
+            }
         }
 
     }

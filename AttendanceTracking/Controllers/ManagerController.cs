@@ -13,6 +13,7 @@ using AttendanceTracking.Data.Constants;
 namespace AttendanceTracking.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class ManagerController : Controller
     {
         private readonly ManagerService _managerService;
@@ -33,6 +34,21 @@ namespace AttendanceTracking.Controllers
             else
             {
                 return NotFound(ResponseConstants.ManagerNotAdded);
+            }
+        }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetAllManagers()
+        {
+            var managers = _managerService.GetAllManagers();
+            if (managers != null)
+            {
+                return Ok(managers);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.NoManagersFound);
             }
         }
     }

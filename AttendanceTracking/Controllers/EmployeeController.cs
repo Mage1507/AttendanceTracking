@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AttendanceTracking.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class EmployeeController : Controller
     {
 
@@ -36,6 +37,22 @@ namespace AttendanceTracking.Controllers
                 return NotFound(ResponseConstants.EmployeeNotAdded);
             }
         }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetAllEmployees()
+        {
+            var employees = _employeeService.GetAllEmployees();
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.NoEmployeesFound);
+            }
+        }
+
     }
 }
 

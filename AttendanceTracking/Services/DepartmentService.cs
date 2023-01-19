@@ -41,6 +41,27 @@ namespace AttendanceTracking.Services
 
         }
 
+        public List<Department> GetAllDepartments()
+        {
+            try
+            {
+                var departments = _dbContext.departments.ToList();
+                if (departments != null)
+                {
+                    return departments;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Exception in GetAllDepartments Method : " + ex.Message);
+                return null;
+            }
+        }
+
 
 
         public bool IsDepartmentNameExist(string departmentName)

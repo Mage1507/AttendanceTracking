@@ -48,7 +48,7 @@ namespace AttendanceTracking.Services
                 {
 
 
-                    BlobClient client = container.GetBlobClient(employeeVM.employeeEmail.Split('@')[0]+Path.GetExtension(employeeVM.profileImageUrl.FileName));
+                    BlobClient client = container.GetBlobClient(employeeVM.employeeEmail.Split('@')[0] + Path.GetExtension(employeeVM.profileImageUrl.FileName));
 
                     using (Stream? data = employeeVM.profileImageUrl.OpenReadStream())
                     {
@@ -74,7 +74,27 @@ namespace AttendanceTracking.Services
             }
         }
 
+        public List<Employee> GetAllEmployees()
+        {
+            try
+            {
+                var employees = _dbContext.employees.ToList();
+                if (employees != null)
+                {
+                    return employees;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Exception in Get All Employees Method : " + ex.Message);
+                return null;
+            }
 
+        }
 
         public List<Employee> GetEmployeeListByManagerId(int managerId)
         {

@@ -50,7 +50,26 @@ namespace AttendanceTracking.Services
             }
         }
 
-
+        public List<Manager> GetAllManagers()
+        {
+            try
+            {
+                var managers = _dbContext.managers.ToList();
+                if (managers != null)
+                {
+                    return managers;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Exception in GetAllManagers Method : " + ex.Message);
+                return null;
+            }
+        }
 
         public bool IsManagerEmailExist(string managerEmail)
         {
