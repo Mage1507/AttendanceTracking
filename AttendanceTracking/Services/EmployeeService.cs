@@ -33,6 +33,7 @@ namespace AttendanceTracking.Services
 
         public bool AddEmployee(EmployeeVM employeeVM)
         {
+            _logger.LogInformation("AddEmployee Method Called" + employeeVM);
             if (employeeVM == null)
             {
                 return false;
@@ -104,6 +105,7 @@ namespace AttendanceTracking.Services
 
         public bool IsEmployeeEmailExist(string employeeEmail)
         {
+            _logger.LogInformation("IsEmployeeEmailExist Method Called" + employeeEmail);
             var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
             if (employee != null)
             {

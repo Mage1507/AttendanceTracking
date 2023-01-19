@@ -31,7 +31,7 @@ namespace AttendanceTracking.Controllers
         [HttpPost]
         public IActionResult CheckInLog([FromBody] CheckInTimeVM checkInTimeVM)
         {
-            _logger.LogInformation("CheckInLog method called");
+            _logger.LogInformation("CheckInLog method called : "+checkInTimeVM);
             var checkInLog = _attendanceService.LogCheckIn(checkInTimeVM);
             if (checkInLog)
             {
@@ -47,7 +47,7 @@ namespace AttendanceTracking.Controllers
         [HttpPut]
         public IActionResult CheckOutLog([FromBody] CheckOutTimeVM checkOutTimeVM)
         {
-            _logger.LogInformation("CheckOutLog method called");
+            _logger.LogInformation("CheckOutLog method called : "+checkOutTimeVM);
             var checkOutLog = _attendanceService.LogCheckOut(checkOutTimeVM);
             if (checkOutLog)
             {
@@ -63,7 +63,7 @@ namespace AttendanceTracking.Controllers
         [HttpGet]
         public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
-            _logger.LogInformation("GetAttendanceOfEmployee method called");
+            _logger.LogInformation("GetAttendanceOfEmployee method called : "+ managerId + " " + date + " " + fromTime + " " + toTime);
             try
             {
                 var attendance = _attendanceService.GetAttendanceOfEmployee(managerId, date, fromTime, toTime);

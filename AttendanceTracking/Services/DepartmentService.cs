@@ -16,6 +16,7 @@ namespace AttendanceTracking.Services
 
         public bool AddDepartment(Department department)
         {
+            _logger.LogInformation("AddDepartment Method Called"+department);
             if (department == null)
             {
                 return false;
@@ -43,6 +44,7 @@ namespace AttendanceTracking.Services
 
         public List<Department> GetAllDepartments()
         {
+            _logger.LogInformation("GetAllDepartments Method Called");
             try
             {
                 var departments = _dbContext.departments.ToList();

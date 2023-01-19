@@ -5,6 +5,7 @@ using Serilog;
 using FluentValidation.AspNetCore;
 using System.Reflection;
 using Azure.Identity;
+using Microsoft.ApplicationInsights.Extensibility;
 
 internal class Program
 {
@@ -14,13 +15,15 @@ internal class Program
 
         // Add services to the container.
 
-        var logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().CreateLogger();
-        builder.Logging.ClearProviders();
-        builder.Logging.AddSerilog(logger);
-
         builder.Configuration.AddAzureKeyVault(
         new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
         new DefaultAzureCredential());
+
+        var logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().WriteTo.ApplicationInsights(new TelemetryConfiguration { InstrumentationKey = builder.Configuration.GetValue<string>("InstrumentationKey") }, TelemetryConverter.Traces).CreateLogger();
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSerilog(logger);
+
+
 
         builder.Services.AddControllers().AddFluentValidation(c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -35,11 +38,10 @@ internal class Program
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
 
         app.UseHttpsRedirection();
 

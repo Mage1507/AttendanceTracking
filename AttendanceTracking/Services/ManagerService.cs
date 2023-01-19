@@ -52,6 +52,7 @@ namespace AttendanceTracking.Services
 
         public List<Manager> GetAllManagers()
         {
+            _logger.LogInformation("GetAllManagers Method Called");
             try
             {
                 var managers = _dbContext.managers.ToList();
@@ -73,6 +74,7 @@ namespace AttendanceTracking.Services
 
         public bool IsManagerEmailExist(string managerEmail)
         {
+            _logger.LogInformation("IsManagerEmailExist Method Called");
             var manager = _dbContext.managers.Where(m => m.managerEmail == managerEmail).FirstOrDefault();
             if (manager != null)
             {

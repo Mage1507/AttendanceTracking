@@ -26,6 +26,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
     <None Remove="Azure.Storage.Blobs" />
     <None Remove="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
     <None Remove="Data\Constants\" />
+    <None Remove="Serilog.Sinks.ApplicationInsights" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
