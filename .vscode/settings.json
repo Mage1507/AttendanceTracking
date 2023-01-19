@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/9128dad1-94c5-4805-93f8-0ce3d41b96de/AppServices/subscriptions/9128dad1-94c5-4805-93f8-0ce3d41b96de/resourceGroups/dotnet-training/providers/Microsoft.Web/sites/attendancetracking",
+    "appService.deploySubpath": "AttendanceTracking"
+}

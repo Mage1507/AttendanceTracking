@@ -1,0 +1,89 @@
+2023-01-19 11:34:26.626 +05:30  INF  Now listening on: https://localhost:7294
+2023-01-19 11:34:26.659 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-19 11:34:26.663 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-19 11:34:26.664 +05:30  INF  Hosting environment: Development
+2023-01-19 11:34:26.664 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-19 11:34:27.888 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger - -
+2023-01-19 11:34:27.988 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger - - - 301 0 - 101.1555ms
+2023-01-19 11:34:27.995 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/index.html - -
+2023-01-19 11:34:28.119 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/index.html - - - 200 - text/html;charset=utf-8 123.4148ms
+2023-01-19 11:34:28.143 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui.css - -
+2023-01-19 11:34:28.193 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui-bundle.js - -
+2023-01-19 11:34:28.334 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui-standalone-preset.js - -
+2023-01-19 11:34:28.347 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-01-19 11:34:28.347 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui.css - - - 200 143943 text/css 204.2452ms
+2023-01-19 11:34:28.365 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-19 11:34:28.365 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 172.4012ms
+2023-01-19 11:34:28.371 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-19 11:34:28.376 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 42.0039ms
+2023-01-19 11:34:28.878 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/v1/swagger.json - -
+2023-01-19 11:34:28.905 +05:30  INF  Request starting HTTP/1.1 GET https://localhost:7294/swagger/favicon-32x32.png - -
+2023-01-19 11:34:28.905 +05:30  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-01-19 11:34:28.905 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/favicon-32x32.png - - - 200 628 image/png 0.4112ms
+2023-01-19 11:34:29.051 +05:30  INF  Request finished HTTP/1.1 GET https://localhost:7294/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 172.5213ms
+2023-01-19 14:08:10.173 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-19 14:08:10.201 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-19 14:08:10.202 +05:30  INF  Hosting environment: Development
+2023-01-19 14:08:10.202 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-19 14:08:37.992 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-19 14:08:38.104 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 115.3060ms
+2023-01-19 14:08:38.137 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - -
+2023-01-19 14:08:38.139 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - -
+2023-01-19 14:08:38.162 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-19 14:08:38.162 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-19 14:08:38.164 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 24.4543ms
+2023-01-19 14:08:38.164 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 26.4808ms
+2023-01-19 14:08:38.620 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-19 14:08:38.735 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 115.5056ms
+2023-01-19 14:08:46.110 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Manager/GetAllManagers - -
+2023-01-19 14:08:46.113 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-19 14:08:46.116 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.GetAllManagers (AttendanceTracking)'
+2023-01-19 14:08:46.125 +05:30  INF  Route matched with {action = "GetAllManagers", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllManagers() on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-19 14:08:49.131 +05:30  INF  Executed DbCommand (296ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName]
+FROM [managers] AS [m]
+2023-01-19 14:08:49.195 +05:30  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Models.Manager, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-19 14:08:49.204 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.GetAllManagers (AttendanceTracking) in 3075.5352ms
+2023-01-19 14:08:49.204 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.GetAllManagers (AttendanceTracking)'
+2023-01-19 14:08:49.211 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Manager/GetAllManagers - - - 200 - application/json;+charset=utf-8 3101.3568ms
+2023-01-19 14:08:59.809 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Department/GetAllDepartments - -
+2023-01-19 14:08:59.810 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking)'
+2023-01-19 14:08:59.812 +05:30  INF  Route matched with {action = "GetAllDepartments", controller = "Department"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllDepartments() on controller AttendanceTracking.Controllers.DepartmentController (AttendanceTracking).
+2023-01-19 14:09:00.071 +05:30  INF  Executed DbCommand (237ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+2023-01-19 14:09:00.079 +05:30  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Models.Department, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-19 14:09:00.080 +05:30  INF  Executed action AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking) in 267.9387ms
+2023-01-19 14:09:00.081 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking)'
+2023-01-19 14:09:00.081 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Department/GetAllDepartments - - - 200 - application/json;+charset=utf-8 272.0194ms
+2023-01-19 14:09:48.428 +05:30  INF  Application is shutting down...
+2023-01-19 14:28:01.980 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-19 14:28:02.008 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-19 14:28:02.008 +05:30  INF  Hosting environment: Development
+2023-01-19 14:28:02.008 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-19 14:28:45.948 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-19 14:28:46.068 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 122.3737ms
+2023-01-19 14:28:46.631 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-19 14:28:46.761 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 129.8387ms
+2023-01-19 16:33:17.565 +05:30  INF  Application is shutting down...
+2023-01-19 16:34:36.441 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-19 16:34:36.491 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-19 16:34:36.492 +05:30  INF  Hosting environment: Development
+2023-01-19 16:34:36.492 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-19 16:34:39.174 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-19 16:34:39.506 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 200 - text/html;charset=utf-8 333.8133ms
+2023-01-19 16:34:40.811 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-19 16:34:41.171 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 360.8236ms
+2023-01-19 16:34:52.029 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Department/GetAllDepartments - -
+2023-01-19 16:34:52.037 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-19 16:34:52.043 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking)'
+2023-01-19 16:34:52.059 +05:30  INF  Route matched with {action = "GetAllDepartments", controller = "Department"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllDepartments() on controller AttendanceTracking.Controllers.DepartmentController (AttendanceTracking).
+2023-01-19 16:34:52.198 +05:30  INF  GetAllDepartments Method Called
+2023-01-19 16:34:55.034 +05:30  INF  Executed DbCommand (261ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[departmentId], [d].[departmentName]
+FROM [departments] AS [d]
+2023-01-19 16:34:55.098 +05:30  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Models.Department, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-19 16:34:55.108 +05:30  INF  Executed action AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking) in 3045.3465ms
+2023-01-19 16:34:55.108 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.DepartmentController.GetAllDepartments (AttendanceTracking)'
+2023-01-19 16:34:55.116 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Department/GetAllDepartments - - - 200 - application/json;+charset=utf-8 3086.1316ms
+2023-01-19 17:05:46.067 +05:30  INF  Application is shutting down...
