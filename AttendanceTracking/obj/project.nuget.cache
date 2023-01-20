@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ufKQe+eKguC4AeQaNKEtOM9iHwZ4CjQ5Xt1oOu8O93h2lskqPs/S+EKXpGD85pL//scufz4bVy+kRm09I3+oZg==",
+  "dgSpecHash": "3/GH4OBMZ3n1OIt1SJ+Sa8BPoFA+GaMWN5CN5rUHYVbi/jHp5NtPzbD1A/XBdnU7hFcjchYViRNVt6nrtOFiPQ==",
   "success": true,
   "projectFilePath": "/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceTracking.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "/Users/presidio_cbe/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.2.1/fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.applicationinsights/2.20.0/microsoft.applicationinsights.2.20.0.nupkg.sha512",
+    "/Users/presidio_cbe/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.2/microsoft.aspnetcore.authentication.jwtbearer.7.0.2.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.aspnetcore.openapi/7.0.1/microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/presidio_cbe/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",

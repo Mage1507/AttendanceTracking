@@ -225,6 +225,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.1": {
         "type": "package",
         "dependencies": {
@@ -1944,6 +1963,21 @@
         "lib/netstandard2.0/Microsoft.ApplicationInsights.xml",
         "microsoft.applicationinsights.2.20.0.nupkg.sha512",
         "microsoft.applicationinsights.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.2": {
+      "sha512": "sErKh1ZM3Ye1Lib8aWjexf1M5Ne0wptmR8Rr2p/7w1bXyi0kSHnYsVjdEsZGKHE12wNu+g3Zu6TLsKAVEyGYNw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.7.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/7.0.1": {
@@ -4974,6 +5008,7 @@
       "Azure.Security.KeyVault.Secrets >= 4.4.0",
       "Azure.Storage.Blobs >= 12.14.1",
       "FluentValidation.AspNetCore >= 11.2.2",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.2",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Microsoft.EntityFrameworkCore >= 7.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.1",
@@ -5044,6 +5079,10 @@
           "FluentValidation.AspNetCore": {
             "target": "Package",
             "version": "[11.2.2, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[7.0.2, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",

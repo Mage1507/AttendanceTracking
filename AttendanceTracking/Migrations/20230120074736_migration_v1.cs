@@ -32,6 +32,7 @@ namespace AttendanceTracking.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     managerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     managerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    managerPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     departmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

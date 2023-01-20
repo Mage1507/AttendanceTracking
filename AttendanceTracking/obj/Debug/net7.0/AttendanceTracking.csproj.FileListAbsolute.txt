@@ -185,3 +185,4 @@
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/System.IO.Hashing.dll
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Microsoft.ApplicationInsights.dll
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Sinks.ApplicationInsights.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -12,6 +12,7 @@ namespace AttendanceTracking.Data.Profiles
 			CreateMap<Manager,ManagerVM> ()
 			.ForMember (dest => dest.managerName, opt => opt.MapFrom (src => src.managerName))
 			.ForMember (dest => dest.managerEmail, opt => opt.MapFrom (src => src.managerEmail))
+			.ForMember (dest => dest.managerPassword, opt => opt.MapFrom (src => src.managerPassword))
 			.ForMember (dest => dest.departmentId, opt => opt.MapFrom (src => src.departmentId)).ReverseMap();
 		}
 	}

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceTracking.Migrations
 {
     [DbContext(typeof(DbInitializer))]
-    [Migration("20230118144245_migration_v1")]
+    [Migration("20230120074736_migration_v1")]
     partial class migrationv1
     {
         /// <inheritdoc />
@@ -115,6 +115,10 @@ namespace AttendanceTracking.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("managerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("managerPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

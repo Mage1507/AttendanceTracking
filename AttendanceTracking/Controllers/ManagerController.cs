@@ -38,6 +38,21 @@ namespace AttendanceTracking.Controllers
         }
 
         [Route("[Action]")]
+        [HttpPost]
+        public IActionResult ManagerLogin([FromBody]ManagerLoginVM managerLoginVM)
+        {
+            var manager = _managerService.ManagerLogin(managerLoginVM);
+            if (manager != null)
+            {
+                return Ok(manager);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.ManagerNotFound);
+            }
+        }
+
+        [Route("[Action]")]
         [HttpGet]
         public IActionResult GetAllManagers()
         {

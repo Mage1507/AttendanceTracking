@@ -79,6 +79,28 @@ namespace AttendanceTracking.Services
             }
         }
 
+        public Department GetDepartmentById(int departmentId)
+        {
+            _logger.LogInformation("GetDepartmentById Method Called");
+            try
+            {
+                var department = _dbContext.departments.Where(d => d.departmentId == departmentId).FirstOrDefault();
+                if (department != null)
+                {
+                    return department;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Exception in GetDepartmentById Method : " + ex.Message);
+                return null;
+            }
+        }
+
     }
 }
 

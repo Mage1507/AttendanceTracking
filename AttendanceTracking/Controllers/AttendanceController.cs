@@ -6,6 +6,7 @@ using AttendanceTracking.Data.Constants;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -61,6 +62,7 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]/{managerId}/{date}/{fromTime}/{toTime}")]
         [HttpGet]
+        [Authorize]
         public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
             _logger.LogInformation("GetAttendanceOfEmployee method called : "+ managerId + " " + date + " " + fromTime + " " + toTime);

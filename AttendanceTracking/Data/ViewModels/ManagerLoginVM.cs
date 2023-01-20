@@ -1,14 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace AttendanceTracking.Data.ViewModels
 {
-	public class ManagerVM
+	public class ManagerLoginVM
 	{
-		public string managerName { get; set; }
 		public string managerEmail { get; set; }
 		public string managerPassword { get; set; }
-		public int departmentId { get; set; }
 	}
 }
 

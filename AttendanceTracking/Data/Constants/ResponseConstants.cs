@@ -15,6 +15,8 @@ namespace AttendanceTracking.Data.Constants
 
 		public const string NoManagersFound = "Error in fetching Managers";
 
+		public const string ManagerNotFound = "Manager Not Found";
+
 		public const string EmployeeAddedSuccessfully = "Employee Added Successfully";
 
 		public const string EmployeeNotAdded = "Error occured in Adding Employee";

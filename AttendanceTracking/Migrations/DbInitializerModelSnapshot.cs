@@ -115,6 +115,10 @@ namespace AttendanceTracking.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("managerPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("managerId");
 
                     b.HasIndex("departmentId");

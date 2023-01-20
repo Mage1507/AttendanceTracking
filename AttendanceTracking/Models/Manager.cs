@@ -17,6 +17,9 @@ namespace AttendanceTracking.Models
         [EmailAddress]
         public string managerEmail { get; set; }
 
+        [Required]
+        public string managerPassword { get; set; }
+
         public int departmentId { get; set; }
 
         public Department department { get; set; }
