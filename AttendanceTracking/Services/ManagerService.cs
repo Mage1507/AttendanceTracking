@@ -103,17 +103,12 @@ namespace AttendanceTracking.Services
             }
         }
 
-        public List<Manager> GetAllManagers()
+        public List<ManagerResponseVM> GetAllManagers()
         {
             _logger.LogInformation("GetAllManagers Method Called");
             try
             {
-                var managers = _dbContext.managers.ToList();
-                managers.ForEach(m =>
-                {
-                    m.managerPassword = null;
-                    m.department = _departmentService.GetDepartmentById(m.departmentId);
-                });
+                var managers = _mapper.Map<List<ManagerResponseVM>>(_dbContext.managers.ToList());
                 if (managers != null)
                 {
                     return managers;
@@ -143,6 +138,23 @@ namespace AttendanceTracking.Services
                 return false;
             }
         }
+
+        public int GetManagerIdByManagerEmail(string managerEmail)
+        {
+            _logger.LogInformation("GetManagerIdByEmail Method Called");
+            var manager = _dbContext.managers.Where(m => m.managerEmail == managerEmail).FirstOrDefault();
+            if (manager != null)
+            {
+                return manager.managerId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+
     }
 }
 

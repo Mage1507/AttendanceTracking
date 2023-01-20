@@ -116,6 +116,20 @@ namespace AttendanceTracking.Services
                 return false;
             }
         }
+
+        public int GetEmployeeIdByEmployeeEmail(string employeeEmail)
+        {
+            _logger.LogInformation("GetEmployeeIdByEmployeeEmail Method Called" + employeeEmail);
+            var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
+            if (employee != null)
+            {
+                return employee.employeeId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
 

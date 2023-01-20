@@ -66,6 +66,21 @@ namespace AttendanceTracking.Controllers
                 return NotFound(ResponseConstants.NoManagersFound);
             }
         }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetManagerIdByManagerEmail(string managerEmail)
+        {
+            var managerId = _managerService.GetManagerIdByManagerEmail(managerEmail);
+            if (managerId != 0)
+            {
+                return Ok(ResponseConstants.ManagerId + managerId);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.ManagerNotFound);
+            }
+        }
     }
 }
 

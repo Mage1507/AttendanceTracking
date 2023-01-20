@@ -76,7 +76,7 @@ namespace AttendanceTracking.Services
             }
             try
             {
-              
+
                 var attendanceList = GetAttendanceListByEmployeeId(checkOutTimeVM.employeeId);
                 foreach (var att in attendanceList)
                 {
@@ -126,13 +126,13 @@ namespace AttendanceTracking.Services
                     {
                         att.totalPresentTime = att.checkOutTime?.ToLocalTime() - att.checkInTime.ToLocalTime();
                         _logger.LogInformation("Total Present Time:" + att.totalPresentTime);
-                         ts = ts+att.totalPresentTime;
+                        ts = ts + att.totalPresentTime;
                         _logger.LogInformation("Total Present Time:" + ts);
                         att.totalHoursInOffice = ts;
+                        att.checkOutTime = att.checkOutTime?.ToLocalTime();
+                        att.checkInTime = att.checkInTime.ToLocalTime();
                         attendanceList.Add(att);
                     }
-                   
-
                 }
             }
 

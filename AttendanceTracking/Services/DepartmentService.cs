@@ -16,7 +16,7 @@ namespace AttendanceTracking.Services
 
         public bool AddDepartment(Department department)
         {
-            _logger.LogInformation("AddDepartment Method Called"+department);
+            _logger.LogInformation("AddDepartment Method Called" + department);
             if (department == null)
             {
                 return false;
@@ -79,25 +79,27 @@ namespace AttendanceTracking.Services
             }
         }
 
-        public Department GetDepartmentById(int departmentId)
+
+
+        public int GetDepartmentIdByName(string departmentName)
         {
-            _logger.LogInformation("GetDepartmentById Method Called");
+            _logger.LogInformation("GetDepartmentIdByName Method Called");
             try
             {
-                var department = _dbContext.departments.Where(d => d.departmentId == departmentId).FirstOrDefault();
+                var department = _dbContext.departments.Where(d => d.departmentName == departmentName).FirstOrDefault();
                 if (department != null)
                 {
-                    return department;
+                    return department.departmentId;
                 }
                 else
                 {
-                    return null;
+                    return 0;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError("Exception in GetDepartmentById Method : " + ex.Message);
-                return null;
+                _logger.LogError("Exception in GetDepartmentIdByName Method : " + ex.Message);
+                return 0;
             }
         }
 

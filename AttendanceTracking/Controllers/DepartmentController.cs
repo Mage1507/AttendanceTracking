@@ -52,6 +52,21 @@ namespace AttendanceTracking.Controllers
             }
         }
 
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetDepartmentIdByName(string departmentName)
+        {
+            var departmentId = _departmentService.GetDepartmentIdByName(departmentName);
+            if (departmentId != 0)
+            {
+                return Ok(ResponseConstants.DepartmentId + departmentId);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.DepartmentIdNotFound);
+            }
+        }
+
     }
 }
 

@@ -53,6 +53,21 @@ namespace AttendanceTracking.Controllers
             }
         }
 
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult GetEmployeeIdByEmployeeEmail(string employeeEmail)
+        {
+            var employeeId = _employeeService.GetEmployeeIdByEmployeeEmail(employeeEmail);
+            if (employeeId != 0)
+            {
+                return Ok(ResponseConstants.EmployeeId + employeeId);
+            }
+            else
+            {
+                return NotFound(ResponseConstants.EmployeeNotFound);
+            }
+        }
+
     }
 }
 
