@@ -1,5 +1,6 @@
 ﻿using System;
 using AttendanceTracking.Data;
+using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
@@ -75,11 +76,11 @@ namespace AttendanceTracking.Services
             }
         }
 
-        public List<Employee> GetAllEmployees()
+        public List<EmployeeResponse> GetAllEmployees()
         {
             try
             {
-                var employees = _dbContext.employees.ToList();
+                var employees = _mapper.Map<List<EmployeeResponse>>(_dbContext.employees.ToList());
                 if (employees != null)
                 {
                     return employees;

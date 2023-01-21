@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AttendanceTracking.Data.Constants;
+using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
@@ -63,7 +64,7 @@ namespace AttendanceTracking.Controllers
         [Route("[Action]/{managerId}/{date}/{fromTime}/{toTime}")]
         [HttpGet]
         [Authorize]
-        public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
+        public List<AttendanceResponse> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
             _logger.LogInformation("GetAttendanceOfEmployee method called : "+ managerId + " " + date + " " + fromTime + " " + toTime);
             try

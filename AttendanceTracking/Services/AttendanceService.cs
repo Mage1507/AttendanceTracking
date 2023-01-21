@@ -1,7 +1,9 @@
 ﻿using System;
 using AttendanceTracking.Data;
+using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
+using AutoMapper;
 
 namespace AttendanceTracking.Services
 {
@@ -16,12 +18,15 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<AttendanceService> _logger;
 
-        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService, ManagerService manager, ILogger<AttendanceService> logger)
+          private readonly IMapper _mapper;
+
+        public AttendanceService(DbInitializer dbContext, EmployeeService employeeService, ManagerService manager, ILogger<AttendanceService> logger, IMapper mapper)
         {
             _dbContext = dbContext;
             _employeeService = employeeService;
             _managerService = manager;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public bool LogCheckIn(CheckInTimeVM checkInTimeVM)
@@ -77,7 +82,7 @@ namespace AttendanceTracking.Services
             try
             {
 
-                var attendanceList = GetAttendanceListByEmployeeId(checkOutTimeVM.employeeId);
+                var attendanceList = GetAttendanceList(checkOutTimeVM.employeeId);
                 foreach (var att in attendanceList)
                 {
                     string date = att.date.ToShortDateString();
@@ -109,10 +114,10 @@ namespace AttendanceTracking.Services
         }
 
 
-        public List<Attendance> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
+        public List<AttendanceResponse> GetAttendanceOfEmployee(int managerId, DateTime date, DateTime fromTime, DateTime toTime)
         {
             var employeeList = GetAttendanceListByManagerId(managerId);
-            var attendanceList = new List<Attendance>();
+            var attendanceList = new List<AttendanceResponse>();
             //get attendance list by employee id
             foreach (var emp in employeeList)
             {
@@ -145,9 +150,15 @@ namespace AttendanceTracking.Services
             return employeeList;
         }
 
-        public List<Attendance> GetAttendanceListByEmployeeId(int employeeId)
+        public List<AttendanceResponse> GetAttendanceListByEmployeeId(int employeeId)
         {
-            var attendanceList = _dbContext.attendances.Where(a => a.employeeId == employeeId).ToList();
+            var attendanceList = _mapper.Map<List<AttendanceResponse>>(_dbContext.attendances.Where(x => x.employeeId == employeeId).ToList());
+            return attendanceList;
+        }
+
+        public List<Attendance> GetAttendanceList(int employeeId)
+        {
+            var attendanceList = _dbContext.attendances.Where(x => x.employeeId == employeeId).ToList();
             return attendanceList;
         }
 
