@@ -16,5 +16,7 @@ namespace AttendanceTracking.Data.ResponseModels
 
         public TimeSpan? totalHoursInOffice { get; set; }
         public int employeeId { get; set; }
+
+        public string employeeEmail{ get; set; }
     }
 }

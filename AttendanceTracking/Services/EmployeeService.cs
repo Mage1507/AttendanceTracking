@@ -21,7 +21,14 @@ namespace AttendanceTracking.Services
         private readonly string _storageConnectionString;
 
         private readonly string _storageContainerName;
-        public EmployeeService(DbInitializer dbContext, ManagerService managerService, ILogger<EmployeeService> logger, IMapper mapper, IConfiguration configuration)
+
+        public EmployeeService(
+            DbInitializer dbContext,
+            ManagerService managerService,
+            ILogger<EmployeeService> logger,
+            IMapper mapper,
+            IConfiguration configuration
+        )
         {
             _dbContext = dbContext;
             _managerService = managerService;
@@ -29,7 +36,6 @@ namespace AttendanceTracking.Services
             _mapper = mapper;
             _storageConnectionString = configuration.GetValue<string>("BlobConnectionString");
             _storageContainerName = configuration.GetValue<string>("BlobContainerName");
-
         }
 
         public bool AddEmployee(EmployeeVM employeeVM)
@@ -39,18 +45,25 @@ namespace AttendanceTracking.Services
             {
                 return false;
             }
-            BlobContainerClient container = new BlobContainerClient(_storageConnectionString, _storageContainerName);
+            BlobContainerClient container = new BlobContainerClient(
+                _storageConnectionString,
+                _storageContainerName
+            );
             try
             {
-                if (IsEmployeeEmailExist(employeeVM.employeeEmail))
+                if (
+                    IsEmployeeEmailExist(employeeVM.employeeEmail)
+                    | IsEmployeeEmailExistsInManager(employeeVM.employeeEmail)
+                )
                 {
                     return false;
                 }
                 else
                 {
-
-
-                    BlobClient client = container.GetBlobClient(employeeVM.employeeEmail.Split('@')[0] + Path.GetExtension(employeeVM.profileImageUrl.FileName));
+                    BlobClient client = container.GetBlobClient(
+                        employeeVM.employeeEmail.Split('@')[0]
+                            + Path.GetExtension(employeeVM.profileImageUrl.FileName)
+                    );
 
                     using (Stream? data = employeeVM.profileImageUrl.OpenReadStream())
                     {
@@ -63,10 +76,8 @@ namespace AttendanceTracking.Services
                         _dbContext.employees.Add(mappedEmployee);
                         _dbContext.SaveChanges();
                         return true;
-
                     }
                     return false;
-
                 }
             }
             catch (Exception ex)
@@ -95,7 +106,6 @@ namespace AttendanceTracking.Services
                 _logger.LogError("Exception in Get All Employees Method : " + ex.Message);
                 return null;
             }
-
         }
 
         public List<Employee> GetEmployeeListByManagerId(int managerId)
@@ -107,7 +117,9 @@ namespace AttendanceTracking.Services
         public bool IsEmployeeEmailExist(string employeeEmail)
         {
             _logger.LogInformation("IsEmployeeEmailExist Method Called" + employeeEmail);
-            var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
+            var employee = _dbContext.employees
+                .Where(e => e.employeeEmail == employeeEmail)
+                .FirstOrDefault();
             if (employee != null)
             {
                 return true;
@@ -121,7 +133,9 @@ namespace AttendanceTracking.Services
         public int GetEmployeeIdByEmployeeEmail(string employeeEmail)
         {
             _logger.LogInformation("GetEmployeeIdByEmployeeEmail Method Called" + employeeEmail);
-            var employee = _dbContext.employees.Where(e => e.employeeEmail == employeeEmail).FirstOrDefault();
+            var employee = _dbContext.employees
+                .Where(e => e.employeeEmail == employeeEmail)
+                .FirstOrDefault();
             if (employee != null)
             {
                 return employee.employeeId;
@@ -131,6 +145,37 @@ namespace AttendanceTracking.Services
                 return 0;
             }
         }
+
+        public string GetEmployeeEmailById(int employeeId)
+        {
+            _logger.LogInformation("GetEmployeeEmailById Method Called" + employeeId);
+            var employee = _dbContext.employees
+                .Where(e => e.employeeId == employeeId)
+                .FirstOrDefault();
+            if (employee != null)
+            {
+                return employee.employeeEmail;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool IsEmployeeEmailExistsInManager(string employeeEmail)
+        {
+            _logger.LogInformation("IsEmployeeEmailExistsInManager Method Called" + employeeEmail);
+            var manager = _dbContext.managers
+                .Where(m => m.managerEmail == employeeEmail)
+                .FirstOrDefault();
+            if (manager != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
-

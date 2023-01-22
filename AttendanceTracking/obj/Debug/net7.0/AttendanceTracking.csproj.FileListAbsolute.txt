@@ -186,3 +186,17 @@
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Microsoft.ApplicationInsights.dll
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Serilog.Sinks.ApplicationInsights.dll
 /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Azure.Communication.Email.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.barcodes.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.forms.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.io.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.kernel.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.layout.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.pdfa.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.sign.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.styledxmlparser.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.svg.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/itext.commons.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Microsoft.DotNet.PlatformAbstractions.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/bin/Debug/net7.0/BouncyCastle.Crypto.dll

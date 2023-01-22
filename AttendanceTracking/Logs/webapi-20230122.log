@@ -1,0 +1,1173 @@
+2023-01-22 18:30:07.835 +05:30  INF  Application is shutting down...
+2023-01-22 18:30:44.880 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 18:30:44.996 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 18:30:44.997 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 18:30:44.998 +05:30  INF  Hosting environment: Development
+2023-01-22 18:30:44.998 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 18:30:50.644 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 18:30:50.819 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 178.3748ms
+2023-01-22 18:30:50.835 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger-ui.css - -
+2023-01-22 18:30:50.860 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-01-22 18:30:50.862 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger-ui.css - - - 200 143943 text/css 26.3884ms
+2023-01-22 18:30:51.335 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 18:30:51.448 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 112.1908ms
+2023-01-22 18:31:48.854 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 18:31:48.861 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 18:31:48.871 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 18:31:48.931 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 18:31:49.536 +05:30  INF  ManagerLogin Method Called
+2023-01-22 18:31:52.887 +05:30  INF  Executed DbCommand (310ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 18:31:53.111 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 18:31:53.121 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4180.4442ms
+2023-01-22 18:31:53.121 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 18:31:53.133 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4279.5092ms
+2023-01-22 18:33:22.254 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-20 00:00:00.000/2023-01-20 09:00:00.000/2023-01-20 23:00:00.000 - -
+2023-01-22 18:33:22.304 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 18:33:22.311 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 18:33:22.318 +05:30  INF  GetAttendanceOfEmployee method called : 1 20/01/2023 00:00:00 20/01/2023 09:00:00 20/01/2023 23:00:00
+2023-01-22 18:33:22.572 +05:30  INF  Executed DbCommand (230ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 18:33:22.829 +05:30  INF  Executed DbCommand (231ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 18:33:22.898 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 18:33:22.899 +05:30  INF  Total Present Time:00:00:11.7163820
+2023-01-22 18:33:22.899 +05:30  INF  Total Present Time:00:00:11.7163820
+2023-01-22 18:33:23.164 +05:30  INF  Executed DbCommand (261ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 18:33:23.192 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 18:33:23.428 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 18:33:23.973 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 18:33:24.006 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 1694.3345ms
+2023-01-22 18:33:24.006 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 18:33:24.007 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-20 00:00:00.000/2023-01-20 09:00:00.000/2023-01-20 23:00:00.000 - - - 200 - application/json;+charset=utf-8 1753.3139ms
+2023-01-22 18:50:43.327 +05:30  INF  Application is shutting down...
+2023-01-22 18:51:07.471 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 18:51:07.547 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 18:51:07.548 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 18:51:07.548 +05:30  INF  Hosting environment: Development
+2023-01-22 18:51:07.549 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 18:51:09.977 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 18:51:10.093 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 117.2475ms
+2023-01-22 18:51:10.109 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger-ui-standalone-preset.js - -
+2023-01-22 18:51:10.111 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger-ui-bundle.js - -
+2023-01-22 18:51:10.136 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-22 18:51:10.136 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-22 18:51:10.138 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 28.7680ms
+2023-01-22 18:51:10.138 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger-ui-bundle.js - - - 200 1096145 text/javascript 27.3269ms
+2023-01-22 18:51:10.584 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 18:51:10.696 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 112.4031ms
+2023-01-22 18:51:33.867 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 18:51:33.875 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 18:51:33.881 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 18:51:33.906 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 18:51:34.394 +05:30  INF  ManagerLogin Method Called
+2023-01-22 18:51:37.691 +05:30  INF  Executed DbCommand (269ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 18:51:37.904 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 18:51:37.912 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 3998.596ms
+2023-01-22 18:51:37.912 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 18:51:37.924 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4056.7976ms
+2023-01-22 18:52:13.677 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-20 00:00:00.000/2023-01-20 09:00:00.000/2023-01-20 23:00:00.000 - -
+2023-01-22 18:52:13.754 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 18:52:13.766 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 18:52:13.776 +05:30  INF  GetAttendanceOfEmployee method called : 1 20/01/2023 00:00:00 20/01/2023 09:00:00 20/01/2023 23:00:00
+2023-01-22 18:52:14.126 +05:30  INF  Executed DbCommand (311ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 18:52:14.433 +05:30  INF  Executed DbCommand (278ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 18:52:14.488 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 18:52:14.488 +05:30  INF  Total Present Time:00:00:11.7163820
+2023-01-22 18:52:14.488 +05:30  INF  Total Present Time:00:00:11.7163820
+2023-01-22 18:52:14.740 +05:30  INF  Executed DbCommand (248ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 18:52:14.764 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 18:52:15.047 +05:30  INF  Executed DbCommand (277ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 18:52:15.633 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 18:52:15.664 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 1897.3217ms
+2023-01-22 18:52:15.664 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 18:52:15.665 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-20 00:00:00.000/2023-01-20 09:00:00.000/2023-01-20 23:00:00.000 - - - 200 - application/json;+charset=utf-8 1987.3751ms
+2023-01-22 18:53:59.683 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21
+2023-01-22 18:53:59.690 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 18:53:59.692 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.ViewModels.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 18:53:59.763 +05:30  INF  CheckInLog method called : AttendanceTracking.Data.ViewModels.CheckInTimeVM
+2023-01-22 18:54:00.109 +05:30  INF  Executed DbCommand (248ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 18:54:00.623 +05:30  INF  Executed DbCommand (335ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [attendances] ([checkInTime], [checkOutTime], [date], [employeeId])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3);
+2023-01-22 18:54:00.655 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 18:54:00.655 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 962.5745ms
+2023-01-22 18:54:00.655 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 18:54:00.655 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21 - 200 - text/plain;+charset=utf-8 972.0883ms
+2023-01-22 19:01:57.214 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21
+2023-01-22 19:01:57.217 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:01:57.220 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.ViewModels.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:01:57.241 +05:30  INF  CheckOutLog method called : AttendanceTracking.Data.ViewModels.CheckOutTimeVM
+2023-01-22 19:01:59.087 +05:30  INF  Executed DbCommand (227ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:01:59.362 +05:30  INF  Executed DbCommand (259ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [attendances] SET [checkInTime] = @p0, [checkOutTime] = @p1, [date] = @p2, [employeeId] = @p3
+OUTPUT 1
+WHERE [id] = @p4;
+2023-01-22 19:01:59.364 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:01:59.364 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 2143.6783ms
+2023-01-22 19:01:59.364 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:01:59.365 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21 - 200 - text/plain;+charset=utf-8 2150.5034ms
+2023-01-22 19:03:21.766 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21
+2023-01-22 19:03:21.768 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:03:21.768 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.ViewModels.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:03:21.771 +05:30  INF  CheckOutLog method called : AttendanceTracking.Data.ViewModels.CheckOutTimeVM
+2023-01-22 19:03:22.000 +05:30  INF  Executed DbCommand (227ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:03:22.001 +05:30  INF  Executing NotFoundObjectResult, writing value of type 'System.String'.
+2023-01-22 19:03:22.001 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 232.989ms
+2023-01-22 19:03:22.001 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:03:22.001 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21 - 404 - text/plain;+charset=utf-8 234.8488ms
+2023-01-22 19:03:31.635 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21
+2023-01-22 19:03:31.637 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 19:03:31.637 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.ViewModels.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:03:31.641 +05:30  INF  CheckInLog method called : AttendanceTracking.Data.ViewModels.CheckInTimeVM
+2023-01-22 19:03:31.873 +05:30  INF  Executed DbCommand (229ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:03:32.139 +05:30  INF  Executed DbCommand (255ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [attendances] ([checkInTime], [checkOutTime], [date], [employeeId])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3);
+2023-01-22 19:03:32.141 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:03:32.142 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 504.1561ms
+2023-01-22 19:03:32.142 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 19:03:32.143 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21 - 200 - text/plain;+charset=utf-8 507.7861ms
+2023-01-22 19:06:14.412 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21
+2023-01-22 19:06:14.413 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:06:14.413 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.ViewModels.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:06:14.414 +05:30  INF  CheckOutLog method called : AttendanceTracking.Data.ViewModels.CheckOutTimeVM
+2023-01-22 19:06:14.754 +05:30  INF  Executed DbCommand (339ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:06:15.078 +05:30  INF  Executed DbCommand (322ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [attendances] SET [checkInTime] = @p0, [checkOutTime] = @p1, [date] = @p2, [employeeId] = @p3
+OUTPUT 1
+WHERE [id] = @p4;
+2023-01-22 19:06:15.079 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:06:15.080 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 666.9786ms
+2023-01-22 19:06:15.080 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 19:06:15.080 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21 - 200 - text/plain;+charset=utf-8 668.1186ms
+2023-01-22 19:07:34.758 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 19:07:34.761 +05:30  INF  Failed to validate the token.Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '22/01/2023 13:31:37', Current time: '22/01/2023 13:37:34'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+
+2023-01-22 19:07:34.772 +05:30  INF  Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '22/01/2023 13:31:37', Current time: '22/01/2023 13:37:34'.
+2023-01-22 19:07:34.776 +05:30  INF  Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2023-01-22 19:07:34.785 +05:30  INF  AuthenticationScheme: Bearer was challenged.
+2023-01-22 19:07:34.785 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 401 0 - 26.7965ms
+2023-01-22 19:07:43.547 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 19:07:43.549 +05:30  INF  Failed to validate the token.Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '22/01/2023 13:31:37', Current time: '22/01/2023 13:37:43'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+
+2023-01-22 19:07:43.549 +05:30  INF  Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '22/01/2023 13:31:37', Current time: '22/01/2023 13:37:43'.
+2023-01-22 19:07:43.549 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:07:43.549 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 19:07:43.550 +05:30  INF  ManagerLogin Method Called
+2023-01-22 19:07:43.857 +05:30  INF  Executed DbCommand (306ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 19:07:43.858 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:07:43.858 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 309.0038ms
+2023-01-22 19:07:43.858 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:07:43.859 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 312.0427ms
+2023-01-22 19:08:09.909 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 19:08:09.912 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:08:09.912 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:08:09.913 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 19:08:10.175 +05:30  INF  Executed DbCommand (262ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 19:08:10.483 +05:30  INF  Executed DbCommand (307ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:08:10.484 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 19:08:10.484 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 19:08:10.484 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:08:10.484 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:08:10.789 +05:30  INF  Executed DbCommand (304ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:08:10.790 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 19:08:10.790 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:08:10.790 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:08:10.790 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 19:08:11.097 +05:30  INF  Executed DbCommand (305ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 19:08:11.121 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 19:08:11.122 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 1209.7873ms
+2023-01-22 19:08:11.122 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:08:11.122 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 1213.4940ms
+2023-01-22 19:37:10.254 +05:30  INF  Application is shutting down...
+2023-01-22 19:37:36.207 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 19:37:36.297 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 19:37:36.298 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 19:37:36.299 +05:30  INF  Hosting environment: Development
+2023-01-22 19:37:36.299 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 19:37:58.994 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 19:37:59.129 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 136.6223ms
+2023-01-22 19:37:59.599 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 19:37:59.702 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 103.3646ms
+2023-01-22 19:38:19.950 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 19:38:19.963 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 19:38:19.971 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:38:19.997 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 19:38:20.531 +05:30  INF  ManagerLogin Method Called
+2023-01-22 19:38:24.949 +05:30  INF  Executed DbCommand (271ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 19:38:25.171 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:38:25.178 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 5174.3987ms
+2023-01-22 19:38:25.179 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:38:25.190 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 5240.4834ms
+2023-01-22 19:39:04.120 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 19:39:04.193 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:39:04.201 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:39:04.214 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 19:39:04.483 +05:30  INF  Executed DbCommand (233ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 19:39:04.770 +05:30  INF  Executed DbCommand (254ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:39:04.823 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 19:39:04.823 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 19:39:04.824 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:39:04.824 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:39:04.824 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 19:39:05.163 +05:30  INF  Executed DbCommand (333ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:39:05.471 +05:30  INF  Executed DbCommand (304ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:39:05.474 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 19:39:05.474 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:39:05.474 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:39:05.475 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 19:39:05.777 +05:30  INF  Executed DbCommand (302ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:39:05.803 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 19:39:06.044 +05:30  INF  Executed DbCommand (234ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 19:39:06.057 +05:30  ERR  Could not find a part of the path '/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceReport/22/01/2023+1.pdf'.
+2023-01-22 19:39:06.059 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 19:39:06.060 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 1858.5216ms
+2023-01-22 19:39:06.060 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:39:06.060 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 1940.2501ms
+2023-01-22 19:44:20.530 +05:30  INF  Application is shutting down...
+2023-01-22 19:45:11.142 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 19:45:11.215 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 19:45:11.216 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 19:45:11.216 +05:30  INF  Hosting environment: Development
+2023-01-22 19:45:11.216 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 19:45:38.035 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 19:45:38.150 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 116.0833ms
+2023-01-22 19:45:38.633 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 19:45:38.742 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 108.6147ms
+2023-01-22 19:47:36.377 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 19:47:36.389 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 19:47:36.395 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:47:36.421 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 19:47:36.891 +05:30  INF  ManagerLogin Method Called
+2023-01-22 19:47:40.211 +05:30  INF  Executed DbCommand (276ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 19:47:40.453 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:47:40.461 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4033.2901ms
+2023-01-22 19:47:40.461 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:47:40.474 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4097.0723ms
+2023-01-22 19:48:30.073 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 19:48:30.134 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:48:30.140 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:48:30.148 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 19:48:30.454 +05:30  INF  Executed DbCommand (273ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 19:48:30.726 +05:30  INF  Executed DbCommand (238ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:48:30.782 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 19:48:30.782 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 19:48:30.783 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:48:30.783 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:48:30.783 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 19:48:31.064 +05:30  INF  Executed DbCommand (275ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:48:31.317 +05:30  INF  Executed DbCommand (248ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:48:31.318 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 19:48:31.318 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:48:31.319 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:48:31.319 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 19:48:31.576 +05:30  INF  Executed DbCommand (256ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:48:31.599 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 19:48:31.842 +05:30  INF  Executed DbCommand (238ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 19:48:32.423 +05:30  ERR  Could not find file '/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceReport/1.pdf'.
+2023-01-22 19:48:32.425 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 19:48:32.425 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2284.8356ms
+2023-01-22 19:48:32.425 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:48:32.426 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 2352.7094ms
+2023-01-22 19:51:08.740 +05:30  INF  Application is shutting down...
+2023-01-22 19:52:50.910 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 19:52:50.993 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 19:52:50.994 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 19:52:50.994 +05:30  INF  Hosting environment: Development
+2023-01-22 19:52:50.995 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 19:52:51.810 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-22 19:52:51.886 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 19:52:51.890 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 404 0 - 81.3194ms
+2023-01-22 19:52:57.723 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 19:52:57.807 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 83.5412ms
+2023-01-22 19:52:58.203 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 19:52:58.299 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 96.3805ms
+2023-01-22 19:53:16.573 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 19:53:16.581 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:53:16.612 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 19:53:17.098 +05:30  INF  ManagerLogin Method Called
+2023-01-22 19:53:20.538 +05:30  INF  Executed DbCommand (283ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 19:53:20.758 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 19:53:20.765 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4147.2668ms
+2023-01-22 19:53:20.765 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 19:53:20.778 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4205.1028ms
+2023-01-22 19:53:57.276 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 19:53:57.342 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:53:57.351 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 19:53:57.360 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 19:53:57.650 +05:30  INF  Executed DbCommand (255ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 19:53:57.915 +05:30  INF  Executed DbCommand (232ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:53:57.971 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 19:53:57.971 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 19:53:57.972 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:53:57.972 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 19:53:57.973 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 19:53:58.237 +05:30  INF  Executed DbCommand (259ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:53:58.475 +05:30  INF  Executed DbCommand (232ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 19:53:58.476 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 19:53:58.476 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:53:58.476 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 19:53:58.476 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 19:53:59.039 +05:30  INF  Executed DbCommand (562ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 19:53:59.065 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 19:53:59.299 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 19:53:59.905 +05:30  ERR  Could not find file '/Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking/AttendanceReport/1.pdf'.
+2023-01-22 19:53:59.908 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 19:53:59.909 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2558.0278ms
+2023-01-22 19:53:59.909 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 19:53:59.910 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 2634.0577ms
+2023-01-22 20:29:19.829 +05:30  INF  Application is shutting down...
+2023-01-22 20:29:42.564 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 20:29:42.641 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 20:29:42.643 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 20:29:42.643 +05:30  INF  Hosting environment: Development
+2023-01-22 20:29:42.643 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 20:29:51.855 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 20:29:52.001 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 149.3546ms
+2023-01-22 20:29:52.389 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 20:29:52.499 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 110.4648ms
+2023-01-22 20:30:45.682 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 20:30:45.696 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 20:30:45.702 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:30:45.729 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 20:30:46.231 +05:30  INF  ManagerLogin Method Called
+2023-01-22 20:30:49.953 +05:30  INF  Executed DbCommand (656ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 20:30:50.167 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 20:30:50.176 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4439.2292ms
+2023-01-22 20:30:50.177 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:30:50.188 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4505.6111ms
+2023-01-22 20:31:48.547 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 20:31:48.612 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:31:48.620 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 20:31:48.629 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 20:31:48.902 +05:30  INF  Executed DbCommand (235ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 20:31:49.510 +05:30  INF  Executed DbCommand (576ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:31:49.567 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 20:31:49.567 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 20:31:49.567 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:31:49.567 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:31:49.568 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 20:31:49.808 +05:30  INF  Executed DbCommand (233ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:31:50.050 +05:30  INF  Executed DbCommand (237ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:31:50.052 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 20:31:50.053 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:31:50.053 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:31:50.053 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 20:31:51.245 +05:30  INF  Executed DbCommand (1,191ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:31:51.269 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 20:31:51.509 +05:30  INF  Executed DbCommand (232ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 20:31:52.086 +05:30  ERR  Email content must have either HTML or PlainText
+2023-01-22 20:31:52.088 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 20:31:52.088 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 3467.4456ms
+2023-01-22 20:31:52.088 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:31:52.088 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 3541.0051ms
+2023-01-22 20:34:38.960 +05:30  INF  Application is shutting down...
+2023-01-22 20:35:01.264 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 20:35:01.350 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 20:35:01.352 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 20:35:01.352 +05:30  INF  Hosting environment: Development
+2023-01-22 20:35:01.352 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 20:35:31.613 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 20:35:31.756 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 144.7504ms
+2023-01-22 20:35:32.208 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 20:35:32.309 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 101.2642ms
+2023-01-22 20:36:06.913 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 20:36:06.924 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 20:36:06.932 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:36:06.958 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 20:36:07.503 +05:30  INF  ManagerLogin Method Called
+2023-01-22 20:36:11.020 +05:30  INF  Executed DbCommand (290ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 20:36:11.239 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 20:36:11.248 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4281.689ms
+2023-01-22 20:36:11.248 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:36:11.260 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4347.0179ms
+2023-01-22 20:37:11.512 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 20:37:11.574 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:37:11.580 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 20:37:11.587 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 20:37:11.930 +05:30  INF  Executed DbCommand (312ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 20:37:12.236 +05:30  INF  Executed DbCommand (272ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:37:12.296 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 20:37:12.296 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 20:37:12.296 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:37:12.296 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:37:12.297 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 20:37:12.646 +05:30  INF  Executed DbCommand (343ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:37:12.879 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:37:12.881 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 20:37:12.881 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:37:12.881 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:37:12.881 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 20:37:13.111 +05:30  INF  Executed DbCommand (230ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:37:13.132 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 20:37:13.366 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 20:37:13.960 +05:30  ERR  Email content must have either HTML or PlainText
+2023-01-22 20:37:13.962 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 20:37:13.962 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2381.6361ms
+2023-01-22 20:37:13.962 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:37:13.963 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 2450.3977ms
+2023-01-22 20:42:42.109 +05:30  INF  Application is shutting down...
+2023-01-22 20:43:04.002 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 20:43:04.075 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 20:43:04.077 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 20:43:04.077 +05:30  INF  Hosting environment: Development
+2023-01-22 20:43:04.077 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 20:43:20.464 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 20:43:20.591 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 129.3710ms
+2023-01-22 20:43:21.035 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 20:43:21.149 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 114.5984ms
+2023-01-22 20:45:10.657 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 20:45:10.665 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 20:45:10.671 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:45:10.702 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 20:45:11.240 +05:30  INF  ManagerLogin Method Called
+2023-01-22 20:45:15.155 +05:30  INF  Executed DbCommand (338ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 20:45:15.368 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 20:45:15.376 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4666.9494ms
+2023-01-22 20:45:15.376 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 20:45:15.386 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4729.0747ms
+2023-01-22 20:45:57.937 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 20:45:58.005 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:45:58.014 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 20:45:58.025 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 20:45:58.306 +05:30  INF  Executed DbCommand (250ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 20:45:58.613 +05:30  INF  Executed DbCommand (274ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:45:58.663 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 20:45:58.664 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 20:45:58.664 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:45:58.665 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 20:45:58.666 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 20:45:58.897 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:45:59.131 +05:30  INF  Executed DbCommand (229ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 20:45:59.132 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 20:45:59.132 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:45:59.132 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 20:45:59.133 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 20:45:59.363 +05:30  INF  Executed DbCommand (230ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 20:45:59.371 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 20:45:59.604 +05:30  INF  Executed DbCommand (228ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 20:46:01.792 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 20:46:01.824 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 3809.7088ms
+2023-01-22 20:46:01.825 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 20:46:01.826 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 3889.0533ms
+2023-01-22 21:10:39.004 +05:30  INF  Application is shutting down...
+2023-01-22 21:11:09.467 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 21:11:09.542 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 21:11:09.544 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 21:11:09.544 +05:30  INF  Hosting environment: Development
+2023-01-22 21:11:09.544 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 21:14:51.488 +05:30  INF  Application is shutting down...
+2023-01-22 21:15:14.612 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 21:15:14.686 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 21:15:14.688 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 21:15:14.688 +05:30  INF  Hosting environment: Development
+2023-01-22 21:15:14.688 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 21:15:25.697 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 21:15:25.819 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 123.5308ms
+2023-01-22 21:15:26.261 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 21:15:26.365 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 104.6273ms
+2023-01-22 21:15:48.161 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 21:15:48.175 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 21:15:48.181 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:15:48.210 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 21:15:48.727 +05:30  INF  ManagerLogin Method Called
+2023-01-22 21:15:52.224 +05:30  INF  Executed DbCommand (273ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 21:15:52.469 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 21:15:52.478 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4259.9258ms
+2023-01-22 21:15:52.478 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:15:52.488 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4327.5317ms
+2023-01-22 21:16:30.635 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 21:16:30.703 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:16:30.712 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 21:16:30.721 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 21:16:31.062 +05:30  INF  Executed DbCommand (303ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 21:16:31.321 +05:30  INF  Executed DbCommand (231ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:16:31.374 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 21:16:31.375 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 21:16:31.375 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:16:31.375 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:16:31.376 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 21:16:31.615 +05:30  INF  Executed DbCommand (234ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:16:31.853 +05:30  INF  Executed DbCommand (234ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:16:31.854 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 21:16:31.854 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:16:31.854 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:16:31.854 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 21:16:32.093 +05:30  INF  Executed DbCommand (239ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:16:32.111 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 21:16:32.349 +05:30  INF  Executed DbCommand (233ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 21:16:32.905 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 21:16:32.937 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2224.4554ms
+2023-01-22 21:16:32.937 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:16:32.938 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 2303.1014ms
+2023-01-22 21:21:41.253 +05:30  INF  Application is shutting down...
+2023-01-22 21:22:03.619 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 21:22:03.704 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 21:22:03.706 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 21:22:03.707 +05:30  INF  Hosting environment: Development
+2023-01-22 21:22:03.707 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 21:22:09.685 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 21:22:09.813 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 129.0089ms
+2023-01-22 21:22:10.269 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 21:22:10.370 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 101.3780ms
+2023-01-22 21:22:29.882 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21
+2023-01-22 21:22:29.895 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 21:22:29.901 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 21:22:29.930 +05:30  INF  Route matched with {action = "CheckInLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckInLog(AttendanceTracking.Data.ViewModels.CheckInTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 21:22:30.495 +05:30  INF  CheckInLog method called : AttendanceTracking.Data.ViewModels.CheckInTimeVM
+2023-01-22 21:22:34.173 +05:30  INF  Executed DbCommand (270ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:22:34.696 +05:30  INF  Executed DbCommand (264ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [attendances] ([checkInTime], [checkOutTime], [date], [employeeId])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3);
+2023-01-22 21:22:34.735 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 21:22:34.742 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking) in 4805.4079ms
+2023-01-22 21:22:34.743 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckInLog (AttendanceTracking)'
+2023-01-22 21:22:34.755 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Attendance/CheckInLog application/json 21 - 200 - text/plain;+charset=utf-8 4873.0144ms
+2023-01-22 21:23:52.586 +05:30  INF  Request starting HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21
+2023-01-22 21:23:52.588 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 21:23:52.592 +05:30  INF  Route matched with {action = "CheckOutLog", controller = "Attendance"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CheckOutLog(AttendanceTracking.Data.ViewModels.CheckOutTimeVM) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 21:23:52.610 +05:30  INF  CheckOutLog method called : AttendanceTracking.Data.ViewModels.CheckOutTimeVM
+2023-01-22 21:23:52.914 +05:30  INF  Executed DbCommand (272ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:23:53.198 +05:30  INF  Executed DbCommand (264ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [attendances] SET [checkInTime] = @p0, [checkOutTime] = @p1, [date] = @p2, [employeeId] = @p3
+OUTPUT 1
+WHERE [id] = @p4;
+2023-01-22 21:23:53.205 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 21:23:53.206 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking) in 613.8909ms
+2023-01-22 21:23:53.206 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.CheckOutLog (AttendanceTracking)'
+2023-01-22 21:23:53.207 +05:30  INF  Request finished HTTP/1.1 PUT http://localhost:5073/Attendance/CheckOutLog application/json 21 - 200 - text/plain;+charset=utf-8 621.1646ms
+2023-01-22 21:25:11.919 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 21:25:11.920 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:25:11.921 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 21:25:11.927 +05:30  INF  ManagerLogin Method Called
+2023-01-22 21:25:12.812 +05:30  INF  Executed DbCommand (766ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 21:25:12.975 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 21:25:12.982 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 1060.3689ms
+2023-01-22 21:25:12.983 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:25:12.984 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 1064.3110ms
+2023-01-22 21:25:55.365 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 21:25:55.456 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:25:55.461 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 21:25:55.470 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 21:25:55.718 +05:30  INF  Executed DbCommand (238ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 21:25:55.972 +05:30  INF  Executed DbCommand (238ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:25:55.978 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 21:25:55.978 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 21:25:55.978 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:25:55.978 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:25:55.980 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 21:25:56.227 +05:30  INF  Executed DbCommand (240ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:25:56.228 +05:30  INF  CheckOut Time:22/01/2023 21:23:52CheckIn Time:22/01/2023 21:22:34
+2023-01-22 21:25:56.229 +05:30  INF  Total Present Time:00:01:18.6310690
+2023-01-22 21:25:56.229 +05:30  INF  Total Present Time:00:04:01.5116780
+2023-01-22 21:25:56.229 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 21:25:56.517 +05:30  INF  Executed DbCommand (287ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:25:56.756 +05:30  INF  Executed DbCommand (237ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:25:56.757 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 21:25:56.757 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:25:56.757 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:25:56.757 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 21:25:56.994 +05:30  INF  Executed DbCommand (237ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:25:57.014 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 21:25:57.325 +05:30  INF  Executed DbCommand (305ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 21:25:57.953 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 21:25:57.989 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2527.395ms
+2023-01-22 21:25:57.989 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:25:57.989 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 2624.5587ms
+2023-01-22 21:47:03.815 +05:30  INF  Application is shutting down...
+2023-01-22 21:47:27.838 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 21:47:27.922 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 21:47:27.923 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 21:47:27.923 +05:30  INF  Hosting environment: Development
+2023-01-22 21:47:27.924 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 21:47:30.313 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 21:47:30.430 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 118.3635ms
+2023-01-22 21:47:30.914 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 21:47:31.014 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 99.5292ms
+2023-01-22 21:48:08.979 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 21:48:08.990 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 21:48:08.998 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:48:09.023 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 21:48:09.549 +05:30  INF  ManagerLogin Method Called
+2023-01-22 21:48:13.088 +05:30  INF  Executed DbCommand (415ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 21:48:13.301 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 21:48:13.309 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4278.6733ms
+2023-01-22 21:48:13.309 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 21:48:13.321 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4342.3972ms
+2023-01-22 21:48:57.923 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 21:48:57.986 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:48:57.993 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 21:48:58.001 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 21:48:58.267 +05:30  INF  Executed DbCommand (236ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 21:48:58.529 +05:30  INF  Executed DbCommand (234ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:48:58.585 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 21:48:58.585 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 21:48:58.585 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:48:58.586 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 21:48:58.586 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 21:48:59.557 +05:30  INF  Executed DbCommand (966ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:48:59.558 +05:30  INF  CheckOut Time:22/01/2023 21:23:52CheckIn Time:22/01/2023 21:22:34
+2023-01-22 21:48:59.558 +05:30  INF  Total Present Time:00:01:18.6310690
+2023-01-22 21:48:59.558 +05:30  INF  Total Present Time:00:04:01.5116780
+2023-01-22 21:48:59.558 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 21:48:59.796 +05:30  INF  Executed DbCommand (233ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:49:00.069 +05:30  INF  Executed DbCommand (273ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 21:49:00.070 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 21:49:00.071 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:49:00.071 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 21:49:00.071 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 21:49:01.606 +05:30  INF  Executed DbCommand (1,535ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 21:49:01.624 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 21:49:01.912 +05:30  INF  Executed DbCommand (284ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 21:49:02.279 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 21:49:02.297 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 4303.704ms
+2023-01-22 21:49:02.297 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 21:49:02.298 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 4375.3842ms
+2023-01-22 22:06:52.850 +05:30  INF  Application is shutting down...
+2023-01-22 22:07:19.973 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 22:07:20.062 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 22:07:20.064 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 22:07:20.064 +05:30  INF  Hosting environment: Development
+2023-01-22 22:07:20.064 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 22:07:40.773 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 22:07:40.959 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 188.7159ms
+2023-01-22 22:07:41.437 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 22:07:41.569 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 132.4439ms
+2023-01-22 22:08:02.841 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 22:08:02.857 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 22:08:02.865 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:08:02.893 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 22:08:03.523 +05:30  INF  ManagerLogin Method Called
+2023-01-22 22:08:15.839 +05:30  INF  Executed DbCommand (1,779ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 22:08:16.130 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 22:08:16.142 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 13240.6953ms
+2023-01-22 22:08:16.142 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:08:16.156 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 13315.7772ms
+2023-01-22 22:08:55.799 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 22:08:55.867 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:08:55.875 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 22:08:55.882 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 22:09:01.840 +05:30  ERR  An error occurred using the connection to database 'attendance' on server 'tcp:dotnet-training-server.database.windows.net,1433'.
+2023-01-22 22:09:01.854 +05:30  ERR  An exception occurred while iterating over the results of a query for context type 'AttendanceTracking.Data.DbInitializer'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
+ ---> System.IO.IOException: Unable to read data from the transport connection: Connection reset by peer.
+ ---> System.Net.Sockets.SocketException (54): Connection reset by peer
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   at Microsoft.Data.SqlClient.SNI.SslOverTdsStream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at Microsoft.Data.SqlClient.SNI.SNITCPHandle.EnableSsl(UInt32 options)
+   at Microsoft.Data.SqlClient.SNI.TdsParserStateObjectManaged.EnableSsl(UInt32& info, Boolean tlsFirst)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:e92c869b-4b78-4538-a45b-c16f2d75515eMicrosoft.Data.SqlClient.SqlException (0x80131904): A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
+ ---> System.IO.IOException: Unable to read data from the transport connection: Connection reset by peer.
+ ---> System.Net.Sockets.SocketException (54): Connection reset by peer
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   at Microsoft.Data.SqlClient.SNI.SslOverTdsStream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at Microsoft.Data.SqlClient.SNI.SNITCPHandle.EnableSsl(UInt32 options)
+   at Microsoft.Data.SqlClient.SNI.TdsParserStateObjectManaged.EnableSsl(UInt32& info, Boolean tlsFirst)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:e92c869b-4b78-4538-a45b-c16f2d75515e
+
+2023-01-22 22:09:01.869 +05:30  ERR  A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
+2023-01-22 22:09:01.870 +05:30  INF  Executing ObjectResult, writing value of type 'null'.
+2023-01-22 22:09:01.871 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 5995.3393ms
+2023-01-22 22:09:01.871 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:09:01.872 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 204 - - 6072.4763ms
+2023-01-22 22:11:31.646 +05:30  INF  Application is shutting down...
+2023-01-22 22:11:55.492 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 22:11:55.580 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 22:11:55.582 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 22:11:55.582 +05:30  INF  Hosting environment: Development
+2023-01-22 22:11:55.583 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 22:12:02.362 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 22:12:02.486 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 126.2204ms
+2023-01-22 22:12:03.009 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 22:12:03.129 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 120.2462ms
+2023-01-22 22:12:23.107 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 22:12:23.119 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 22:12:23.128 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:12:23.157 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 22:12:23.744 +05:30  INF  ManagerLogin Method Called
+2023-01-22 22:12:27.105 +05:30  INF  Executed DbCommand (280ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 22:12:27.339 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 22:12:27.346 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4183.2558ms
+2023-01-22 22:12:27.346 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:12:27.361 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4253.8962ms
+2023-01-22 22:13:05.998 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 22:13:06.072 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:13:06.082 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 22:13:06.094 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 22:13:06.372 +05:30  INF  Executed DbCommand (241ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 22:13:06.643 +05:30  INF  Executed DbCommand (237ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 22:13:06.699 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 22:13:06.700 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 22:13:06.700 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 22:13:06.700 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 22:13:06.701 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 22:13:06.947 +05:30  INF  Executed DbCommand (242ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:13:06.950 +05:30  INF  CheckOut Time:22/01/2023 21:23:52CheckIn Time:22/01/2023 21:22:34
+2023-01-22 22:13:06.950 +05:30  INF  Total Present Time:00:01:18.6310690
+2023-01-22 22:13:06.951 +05:30  INF  Total Present Time:00:04:01.5116780
+2023-01-22 22:13:06.951 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 22:13:07.589 +05:30  INF  Executed DbCommand (633ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:13:07.829 +05:30  INF  Executed DbCommand (238ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 22:13:07.830 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 22:13:07.831 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 22:13:07.831 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 22:13:07.831 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 22:13:08.073 +05:30  INF  Executed DbCommand (242ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:13:08.092 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 22:13:08.341 +05:30  INF  Executed DbCommand (244ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 22:13:08.943 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 22:13:08.977 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 2894.5826ms
+2023-01-22 22:13:08.978 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:13:08.979 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 2981.4169ms
+2023-01-22 22:19:15.337 +05:30  INF  Application is shutting down...
+2023-01-22 22:19:37.874 +05:30  INF  User profile is available. Using '/Users/presidio_cbe/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-01-22 22:19:37.963 +05:30  INF  Now listening on: http://localhost:5073
+2023-01-22 22:19:37.964 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-22 22:19:37.965 +05:30  INF  Hosting environment: Development
+2023-01-22 22:19:37.965 +05:30  INF  Content root path: /Users/presidio_cbe/Documents/AttendanceTracking/AttendanceTracking
+2023-01-22 22:19:43.386 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/index.html - -
+2023-01-22 22:19:43.459 +05:30  WRN  Failed to determine the https port for redirect.
+2023-01-22 22:19:43.463 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/index.html - - - 404 0 - 79.1767ms
+2023-01-22 22:19:50.078 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/index.html - -
+2023-01-22 22:19:50.166 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/index.html - - - 200 - text/html;charset=utf-8 87.9238ms
+2023-01-22 22:19:50.566 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - -
+2023-01-22 22:19:50.665 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 98.6724ms
+2023-01-22 22:20:12.928 +05:30  INF  Request starting HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78
+2023-01-22 22:20:12.933 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:20:12.961 +05:30  INF  Route matched with {action = "ManagerLogin", controller = "Manager"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ManagerLogin(AttendanceTracking.Data.ViewModels.ManagerLoginVM) on controller AttendanceTracking.Controllers.ManagerController (AttendanceTracking).
+2023-01-22 22:20:13.481 +05:30  INF  ManagerLogin Method Called
+2023-01-22 22:20:16.957 +05:30  INF  Executed DbCommand (285ms) [Parameters=[@__managerLoginVM_managerEmail_0='?' (Size = 4000), @__managerLoginVM_managerPassword_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerEmail] = @__managerLoginVM_managerEmail_0 AND [m].[managerPassword] = @__managerLoginVM_managerPassword_1
+2023-01-22 22:20:17.160 +05:30  INF  Executing OkObjectResult, writing value of type 'System.String'.
+2023-01-22 22:20:17.167 +05:30  INF  Executed action AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking) in 4198.3569ms
+2023-01-22 22:20:17.167 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.ManagerController.ManagerLogin (AttendanceTracking)'
+2023-01-22 22:20:17.179 +05:30  INF  Request finished HTTP/1.1 POST http://localhost:5073/Manager/ManagerLogin application/json 78 - 200 - text/plain;+charset=utf-8 4250.3072ms
+2023-01-22 22:20:52.598 +05:30  INF  Request starting HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - -
+2023-01-22 22:20:52.669 +05:30  INF  Executing endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:20:52.679 +05:30  INF  Route matched with {action = "GetAttendanceOfEmployee", controller = "Attendance"}. Executing controller action with signature System.Collections.Generic.List`1[AttendanceTracking.Data.ResponseModels.AttendanceResponse] GetAttendanceOfEmployee(Int32, System.DateTime, System.DateTime, System.DateTime) on controller AttendanceTracking.Controllers.AttendanceController (AttendanceTracking).
+2023-01-22 22:20:52.688 +05:30  INF  GetAttendanceOfEmployee method called : 1 22/01/2023 00:00:00 22/01/2023 09:00:00 22/01/2023 23:00:00
+2023-01-22 22:20:52.964 +05:30  INF  Executed DbCommand (240ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[managerId] = @__managerId_0
+2023-01-22 22:20:53.904 +05:30  INF  Executed DbCommand (911ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 22:20:53.962 +05:30  INF  CheckOut Time:20/01/2023 13:24:47CheckIn Time:20/01/2023 13:24:36
+2023-01-22 22:20:53.962 +05:30  INF  CheckOut Time:22/01/2023 19:06:14CheckIn Time:22/01/2023 19:03:31
+2023-01-22 22:20:53.963 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 22:20:53.963 +05:30  INF  Total Present Time:00:02:42.8806090
+2023-01-22 22:20:53.964 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 22:20:54.208 +05:30  INF  Executed DbCommand (239ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:20:54.210 +05:30  INF  CheckOut Time:22/01/2023 21:23:52CheckIn Time:22/01/2023 21:22:34
+2023-01-22 22:20:54.210 +05:30  INF  Total Present Time:00:01:18.6310690
+2023-01-22 22:20:54.210 +05:30  INF  Total Present Time:00:04:01.5116780
+2023-01-22 22:20:54.210 +05:30  INF  GetEmployeeEmailById Method Called1
+2023-01-22 22:20:54.520 +05:30  INF  Executed DbCommand (305ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:20:54.826 +05:30  INF  Executed DbCommand (306ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[id], [a].[checkInTime], [a].[checkOutTime], [a].[date], [a].[employeeId]
+FROM [attendances] AS [a]
+WHERE [a].[employeeId] = @__employeeId_0
+2023-01-22 22:20:54.828 +05:30  INF  CheckOut Time:22/01/2023 19:01:59CheckIn Time:22/01/2023 18:54:00
+2023-01-22 22:20:54.828 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 22:20:54.828 +05:30  INF  Total Present Time:00:07:58.9775470
+2023-01-22 22:20:54.828 +05:30  INF  GetEmployeeEmailById Method Called2
+2023-01-22 22:20:55.134 +05:30  INF  Executed DbCommand (305ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employeeId], [e].[employeeEmail], [e].[employeeName], [e].[managerId], [e].[profileImageUrl]
+FROM [employees] AS [e]
+WHERE [e].[employeeId] = @__employeeId_0
+2023-01-22 22:20:55.148 +05:30  INF  GetManagerEmail Method Called
+2023-01-22 22:20:55.441 +05:30  INF  Executed DbCommand (288ms) [Parameters=[@__managerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[managerId], [m].[departmentId], [m].[managerEmail], [m].[managerName], [m].[managerPassword]
+FROM [managers] AS [m]
+WHERE [m].[managerId] = @__managerId_0
+2023-01-22 22:20:57.907 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AttendanceTracking.Data.ResponseModels.AttendanceResponse, AttendanceTracking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-22 22:20:57.941 +05:30  INF  Executed action AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking) in 5261.4892ms
+2023-01-22 22:20:57.941 +05:30  INF  Executed endpoint 'AttendanceTracking.Controllers.AttendanceController.GetAttendanceOfEmployee (AttendanceTracking)'
+2023-01-22 22:20:57.942 +05:30  INF  Request finished HTTP/1.1 GET http://localhost:5073/Attendance/GetAttendanceOfEmployee/1/2023-01-22 00:00:00.000/2023-01-22 09:00:00.000/2023-01-22 23:00:00.000 - - - 200 - application/json;+charset=utf-8 5343.2508ms
+2023-01-22 22:22:52.242 +05:30  INF  Application is shutting down...

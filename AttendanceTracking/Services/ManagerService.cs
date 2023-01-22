@@ -46,7 +46,10 @@ namespace AttendanceTracking.Services
             }
             try
             {
-                if (IsManagerEmailExist(managerVM.managerEmail))
+                if (
+                    IsManagerEmailExist(managerVM.managerEmail)
+                    | IsManagerEmailExistInEmployee(managerVM.managerEmail)
+                )
                 {
                     return false;
                 }
@@ -175,6 +178,38 @@ namespace AttendanceTracking.Services
             else
             {
                 return 0;
+            }
+        }
+
+        public string GetManagerEmail(int managerId)
+        {
+            _logger.LogInformation("GetManagerEmail Method Called");
+            var manager = _dbContext.managers
+                .Where(m => m.managerId == managerId)
+                .FirstOrDefault();
+            if (manager != null)
+            {
+                return manager.managerEmail;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool IsManagerEmailExistInEmployee(string managerEmail)
+        {
+            _logger.LogInformation("IsManagerEmailExistInEmployee Method Called");
+            var employee = _dbContext.employees
+                .Where(e => e.employeeEmail == managerEmail)
+                .FirstOrDefault();
+            if (employee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
