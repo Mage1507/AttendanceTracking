@@ -11,12 +11,14 @@ namespace AttendanceTracking.Data.Validators
 
         public EmployeeVMValidator(EmployeeService employeeService)
         {
-
             _employeeService = employeeService;
             RuleFor(c => c.employeeName).NotEmpty().WithMessage("Employee name is required");
-            RuleFor(c => c.employeeEmail).NotEmpty().WithMessage("Employee email is required").EmailAddress().WithMessage("Employee email is not valid");
+            RuleFor(c => c.employeeEmail)
+                .NotEmpty()
+                .WithMessage("Employee email is required")
+                .EmailAddress()
+                .WithMessage("Employee email is not valid");
             RuleFor(c => c.managerId).NotEmpty().WithMessage("Manager id is required");
         }
     }
 }
-

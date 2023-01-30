@@ -9,11 +9,7 @@ namespace AttendanceTracking.Data.Validators
     {
         public CheckInTimeVMValidator()
         {
-           
             RuleFor(c => c.employeeId).NotEmpty().WithMessage("Employee id is required");
         }
-
-
     }
 }
-

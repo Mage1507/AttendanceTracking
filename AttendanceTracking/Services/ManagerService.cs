@@ -38,17 +38,16 @@ namespace AttendanceTracking.Services
             _configuration = configuration;
         }
 
+        // Add Manager
         public bool AddManager(ManagerVM managerVM)
         {
-            if (managerVM == null)
-            {
-                return false;
-            }
+            _logger.LogInformation("Add Manager Method Called");
             try
             {
                 if (
                     IsManagerEmailExist(managerVM.managerEmail)
                     | IsManagerEmailExistInEmployee(managerVM.managerEmail)
+                    | managerVM == null
                 )
                 {
                     return false;
@@ -72,6 +71,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Authentication for accessing GetAttendanceOfEmployee API
         public string ManagerLogin(ManagerLoginVM managerLoginVM)
         {
             _logger.LogInformation("ManagerLogin Method Called");
@@ -127,6 +127,8 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get All Managers
+
         public List<ManagerResponse> GetAllManagers()
         {
             _logger.LogInformation("GetAllManagers Method Called");
@@ -149,6 +151,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Check whether manager email already exist or not
         public bool IsManagerEmailExist(string managerEmail)
         {
             _logger.LogInformation("IsManagerEmailExist Method Called");
@@ -165,6 +168,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Manager Id by Manager Email
         public int GetManagerIdByManagerEmail(string managerEmail)
         {
             _logger.LogInformation("GetManagerIdByEmail Method Called");
@@ -181,12 +185,11 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Manager Email by Manager Id
         public string GetManagerEmail(int managerId)
         {
             _logger.LogInformation("GetManagerEmail Method Called");
-            var manager = _dbContext.managers
-                .Where(m => m.managerId == managerId)
-                .FirstOrDefault();
+            var manager = _dbContext.managers.Where(m => m.managerId == managerId).FirstOrDefault();
             if (manager != null)
             {
                 return manager.managerEmail;
@@ -197,6 +200,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Check whether manager email already exist in employee table or not
         public bool IsManagerEmailExistInEmployee(string managerEmail)
         {
             _logger.LogInformation("IsManagerEmailExistInEmployee Method Called");

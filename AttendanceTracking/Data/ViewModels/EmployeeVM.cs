@@ -14,4 +14,3 @@ namespace AttendanceTracking.Data.ViewModels
         public int managerId { get; set; }
     }
 }
-

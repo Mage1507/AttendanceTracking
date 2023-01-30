@@ -11,6 +11,7 @@ namespace AttendanceTracking.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int departmentId { get; set; }
 
+
         [Required]
         public string departmentName { get; set; }
 

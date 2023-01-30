@@ -38,6 +38,7 @@ namespace AttendanceTracking.Services
             _storageContainerName = configuration.GetValue<string>("BlobContainerName");
         }
 
+        // Add Employee
         public bool AddEmployee(EmployeeVM employeeVM)
         {
             _logger.LogInformation("AddEmployee Method Called" + employeeVM);
@@ -87,6 +88,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get All Employees
         public List<EmployeeResponse> GetAllEmployees()
         {
             try
@@ -108,12 +110,15 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Employee List By Manager Id
         public List<Employee> GetEmployeeListByManagerId(int managerId)
         {
             var employeeList = _dbContext.employees.Where(e => e.managerId == managerId).ToList();
             return employeeList;
         }
 
+
+        //Check Whether Employee Email Already Exists or Not
         public bool IsEmployeeEmailExist(string employeeEmail)
         {
             _logger.LogInformation("IsEmployeeEmailExist Method Called" + employeeEmail);
@@ -130,6 +135,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Employee Id By Employee Email
         public int GetEmployeeIdByEmployeeEmail(string employeeEmail)
         {
             _logger.LogInformation("GetEmployeeIdByEmployeeEmail Method Called" + employeeEmail);
@@ -146,6 +152,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Employee Email By Employee Id
         public string GetEmployeeEmailById(int employeeId)
         {
             _logger.LogInformation("GetEmployeeEmailById Method Called" + employeeId);
@@ -162,6 +169,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Check whether Employee Email Already Exists in Manager Table or Not
         public bool IsEmployeeEmailExistsInManager(string employeeEmail)
         {
             _logger.LogInformation("IsEmployeeEmailExistsInManager Method Called" + employeeEmail);

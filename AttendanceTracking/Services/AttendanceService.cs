@@ -23,6 +23,8 @@ namespace AttendanceTracking.Services
 
         private readonly ManagerService _managerService;
 
+        private readonly EmailService _emailService;
+
         private readonly ILogger<AttendanceService> _logger;
 
         private readonly IMapper _mapper;
@@ -33,6 +35,7 @@ namespace AttendanceTracking.Services
             DbInitializer dbContext,
             EmployeeService employeeService,
             ManagerService manager,
+            EmailService emailService,
             ILogger<AttendanceService> logger,
             IMapper mapper,
             IConfiguration configuration
@@ -44,41 +47,44 @@ namespace AttendanceTracking.Services
             _logger = logger;
             _mapper = mapper;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
+        //Employee CheckIn Function
         public bool LogCheckIn(CheckInTimeVM checkInTimeVM)
         {
-            int count = 0;
-            if (checkInTimeVM == null)
-            {
-                return false;
-            }
             try
             {
-                var attendanceList = GetAttendanceListByEmployeeId(checkInTimeVM.employeeId);
-                foreach (var att in attendanceList)
+                if (checkInTimeVM == null)
                 {
-                    string date = att.date.ToShortDateString();
-                    if (date == DateTime.Now.ToShortDateString() && att.checkOutTime == null)
-                    {
-                        count++;
-                    }
-                }
-                if (count == 0)
-                {
-                    Attendance attendance = new Attendance()
-                    {
-                        employeeId = checkInTimeVM.employeeId,
-                        date = DateTime.Now.Date,
-                        checkInTime = DateTime.UtcNow
-                    };
-                    _dbContext.attendances.Add(attendance);
-                    _dbContext.SaveChanges();
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    //linq query
+                    var attendanceResult =
+                        from c in _dbContext.attendances
+                        where c.employeeId == checkInTimeVM.employeeId
+                        where c.date == DateTime.Now.Date
+                        where c.checkOutTime == null
+                        select c;
+                    _logger.LogInformation("Attendance Result:" + attendanceResult);
+                    if (attendanceResult.Any() != true)
+                    {
+                        Attendance attendance = new Attendance()
+                        {
+                            employeeId = checkInTimeVM.employeeId,
+                            date = DateTime.Now.Date,
+                            checkInTime = DateTime.UtcNow
+                        };
+                        _dbContext.attendances.Add(attendance);
+                        _dbContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -88,35 +94,45 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Employee CheckOut Function
         public bool LogCheckOut(CheckOutTimeVM checkOutTimeVM)
         {
             int count = 0;
-            if (checkOutTimeVM == null)
-            {
-                return false;
-            }
             try
             {
-                var attendanceList = GetAttendanceList(checkOutTimeVM.employeeId);
-                foreach (var att in attendanceList)
-                {
-                    string date = att.date.ToShortDateString();
-                    if (date == DateTime.Now.ToShortDateString() && att.checkOutTime == null)
-                    {
-                        att.checkOutTime = DateTime.UtcNow;
-                        _dbContext.attendances.Update(att);
-                        _dbContext.SaveChanges();
-                        count++;
-                        break;
-                    }
-                }
-                if (count == 0)
+                if (checkOutTimeVM == null)
                 {
                     return false;
                 }
                 else
                 {
-                    return true;
+                    var attendanceResult =
+                        from c in _dbContext.attendances
+                        where c.employeeId == checkOutTimeVM.employeeId
+                        where c.date == DateTime.Now.Date
+                        where c.checkOutTime == null
+                        select c;
+
+                    if (attendanceResult.Any() == true)
+                    {
+                        foreach (var att in attendanceResult)
+                        {
+                            att.checkOutTime = DateTime.UtcNow;
+                            _dbContext.attendances.Update(att);
+                            _dbContext.SaveChanges();
+                            count++;
+                            break;
+                        }
+                    }
+
+                    if (count == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -126,6 +142,7 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Attendance List By Manager Id , Date , FromTime , ToTime
         public List<AttendanceResponse> GetAttendanceOfEmployee(
             int managerId,
             DateTime date,
@@ -178,12 +195,14 @@ namespace AttendanceTracking.Services
             }
         }
 
+        //Get Attendance List By Manager Id
         public List<Employee> GetAttendanceListByManagerId(int managerId)
         {
             var employeeList = _employeeService.GetEmployeeListByManagerId(managerId);
             return employeeList;
         }
 
+        //Get Attendance List By Employee Id
         public List<AttendanceResponse> GetAttendanceListByEmployeeId(int employeeId)
         {
             var attendanceList = _mapper.Map<List<AttendanceResponse>>(
@@ -192,14 +211,7 @@ namespace AttendanceTracking.Services
             return attendanceList;
         }
 
-        public List<Attendance> GetAttendanceList(int employeeId)
-        {
-            var attendanceList = _dbContext.attendances
-                .Where(x => x.employeeId == employeeId)
-                .ToList();
-            return attendanceList;
-        }
-
+        //Generating attendance report and send as email
         public bool SendReportEmail(List<AttendanceResponse> attendanceList, int managerId)
         {
             var managerEmail = _managerService.GetManagerEmail(managerId);
@@ -282,33 +294,8 @@ namespace AttendanceTracking.Services
             document.Add(table);
             document.Close();
 
-            string connectionString = _configuration["communicationService"];
-            EmailClient emailClient = new EmailClient(connectionString);
-            EmailContent emailContent = new EmailContent("Attendance Report");
-            emailContent.PlainText = "Attendance Report";
-            List<EmailAddress> emailAddresses = new List<EmailAddress>
-            {
-                new EmailAddress(managerEmail) { DisplayName = "Friendly Display Name" }
-            };
-            EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
-            EmailMessage emailMessage = new EmailMessage(
-                _configuration["communicationService:FromEmail"],
-                emailContent,
-                emailRecipients
-            );
-            byte[] bytes = File.ReadAllBytes(
-                $"../AttendanceTracking/AttendanceReport/{managerId + "_AttendanceReport"}.pdf"
-            );
-            string attachmentFileInBytes = Convert.ToBase64String(bytes);
-            var emailAttachment = new EmailAttachment(
-                $"{managerId + "_AttendanceReport"}.pdf",
-                EmailAttachmentType.Pdf,
-                attachmentFileInBytes
-            );
-
-            emailMessage.Attachments.Add(emailAttachment);
-            SendEmailResult emailResult = emailClient.Send(emailMessage, CancellationToken.None);
-            if (emailResult.MessageId != null)
+            var sendEmail = _emailService.SendEmail(managerId);
+            if (sendEmail)
             {
                 return true;
             }

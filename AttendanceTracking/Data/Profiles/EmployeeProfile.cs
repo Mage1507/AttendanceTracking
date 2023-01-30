@@ -12,9 +12,8 @@ namespace AttendanceTracking.Data.Profiles
             CreateMap<Employee, EmployeeVM>()
                 .ForMember(dest => dest.employeeName, opt => opt.MapFrom(src => src.employeeName))
                 .ForMember(dest => dest.employeeEmail, opt => opt.MapFrom(src => src.employeeEmail))
-                .ForMember(dest => dest.managerId, opt => opt.MapFrom(src => src.managerId)).ReverseMap();
-
+                .ForMember(dest => dest.managerId, opt => opt.MapFrom(src => src.managerId))
+                .ReverseMap();
         }
     }
 }
-

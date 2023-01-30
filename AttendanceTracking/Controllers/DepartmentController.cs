@@ -14,6 +14,7 @@ namespace AttendanceTracking.Controllers
     public class DepartmentController : Controller
     {
         private readonly DepartmentService _departmentService;
+
         public DepartmentController(DepartmentService departmentService)
         {
             _departmentService = departmentService;
@@ -23,7 +24,6 @@ namespace AttendanceTracking.Controllers
         [HttpPost]
         public IActionResult AddDepartment(Department department)
         {
-
             var addDepartment = _departmentService.AddDepartment(department);
 
             if (addDepartment)
@@ -34,7 +34,6 @@ namespace AttendanceTracking.Controllers
             {
                 return NotFound(ResponseConstants.DepartmentNotAdded);
             }
-
         }
 
         [Route("[Action]")]
@@ -66,7 +65,5 @@ namespace AttendanceTracking.Controllers
                 return NotFound(ResponseConstants.DepartmentIdNotFound);
             }
         }
-
     }
 }
-

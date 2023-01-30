@@ -106,6 +106,7 @@ internal class Program
         builder.Services.AddScoped<ManagerService>();
         builder.Services.AddScoped<EmployeeService>();
         builder.Services.AddScoped<AttendanceService>();
+        builder.Services.AddScoped<EmailService>();
 
         var app = builder.Build();
 

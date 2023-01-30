@@ -6,8 +6,9 @@
         <State name="__root__">
           <Node name="AttendanceTracking" expanded="True">
             <Node name="AttendanceTracking" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" selected="True" />
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Logs" expanded="True">
+                <Node name="webapi-20230122.log" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -19,6 +20,6 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.AttendanceTracking PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.AttendanceTracking PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

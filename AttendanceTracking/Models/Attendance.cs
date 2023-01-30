@@ -6,8 +6,8 @@ namespace AttendanceTracking.Models
 {
     public class Attendance
     {
-
         public int id { get; set; }
+
 
         [Required]
         public DateTime date { get; set; }
@@ -16,15 +16,16 @@ namespace AttendanceTracking.Models
 
         public DateTime? checkOutTime { get; set; }
 
+
         [NotMapped]
         public TimeSpan? totalPresentTime { get; set; }
 
+
         [NotMapped]
-        public TimeSpan? totalHoursInOffice { get; set; } 
+        public TimeSpan? totalHoursInOffice { get; set; }
+
         public int employeeId { get; set; }
+
         public Employee employee { get; set; }
-
-
     }
 }
-

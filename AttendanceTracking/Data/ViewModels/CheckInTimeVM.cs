@@ -8,4 +8,3 @@ namespace AttendanceTracking.Data.ViewModels
         public int employeeId { get; set; }
     }
 }
-

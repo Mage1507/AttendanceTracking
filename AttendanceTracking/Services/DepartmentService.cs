@@ -1,6 +1,7 @@
 ﻿using System;
 using AttendanceTracking.Data;
 using AttendanceTracking.Models;
+
 namespace AttendanceTracking.Services
 {
     public class DepartmentService
@@ -8,22 +9,20 @@ namespace AttendanceTracking.Services
         private readonly DbInitializer _dbContext;
 
         private readonly ILogger<DepartmentService> _logger;
+
         public DepartmentService(DbInitializer dbContext, ILogger<DepartmentService> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
         }
 
+        // Add Department
         public bool AddDepartment(Department department)
         {
             _logger.LogInformation("AddDepartment Method Called" + department);
-            if (department == null)
-            {
-                return false;
-            }
             try
             {
-                if (IsDepartmentNameExist(department.departmentName))
+                if (IsDepartmentNameExist(department.departmentName) | department == null)
                 {
                     return false;
                 }
@@ -39,9 +38,9 @@ namespace AttendanceTracking.Services
                 _logger.LogError("Exception in Add Department Method : " + ex.Message);
                 return false;
             }
-
         }
 
+        //Get All Departments
         public List<Department> GetAllDepartments()
         {
             _logger.LogInformation("GetAllDepartments Method Called");
@@ -64,11 +63,12 @@ namespace AttendanceTracking.Services
             }
         }
 
-
-
+        //Check whether Department Name Already Exist
         public bool IsDepartmentNameExist(string departmentName)
         {
-            var department = _dbContext.departments.Where(d => d.departmentName == departmentName).FirstOrDefault();
+            var department = _dbContext.departments
+                .Where(d => d.departmentName == departmentName)
+                .FirstOrDefault();
             if (department != null)
             {
                 return true;
@@ -79,14 +79,15 @@ namespace AttendanceTracking.Services
             }
         }
 
-
-
+        //Get Department Id By Name
         public int GetDepartmentIdByName(string departmentName)
         {
             _logger.LogInformation("GetDepartmentIdByName Method Called");
             try
             {
-                var department = _dbContext.departments.Where(d => d.departmentName == departmentName).FirstOrDefault();
+                var department = _dbContext.departments
+                    .Where(d => d.departmentName == departmentName)
+                    .FirstOrDefault();
                 if (department != null)
                 {
                     return department.departmentId;
@@ -102,7 +103,5 @@ namespace AttendanceTracking.Services
                 return 0;
             }
         }
-
     }
 }
-

@@ -7,16 +7,9 @@ namespace AttendanceTracking.Data.Validators
 {
     public class CheckOutTimeVMValidator : AbstractValidator<CheckOutTimeVM>
     {
-
-
         public CheckOutTimeVMValidator()
         {
-    
             RuleFor(c => c.employeeId).NotEmpty().WithMessage("Employee email is required");
-
         }
-
-    
     }
 }
-
