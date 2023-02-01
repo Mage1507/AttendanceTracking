@@ -30,6 +30,8 @@ namespace AttendanceTracking.Services
         private readonly IMapper _mapper;
 
         private readonly IConfiguration _configuration;
+        
+        private ServiceBus _serviceBus;
 
         public AttendanceService(
             DbInitializer dbContext,
@@ -38,7 +40,8 @@ namespace AttendanceTracking.Services
             EmailService emailService,
             ILogger<AttendanceService> logger,
             IMapper mapper,
-            IConfiguration configuration
+            IConfiguration configuration,
+            ServiceBus serviceBus
         )
         {
             _dbContext = dbContext;
@@ -48,6 +51,7 @@ namespace AttendanceTracking.Services
             _mapper = mapper;
             _configuration = configuration;
             _emailService = emailService;
+            _serviceBus = serviceBus;
         }
 
         //Employee CheckIn Function
@@ -77,6 +81,8 @@ namespace AttendanceTracking.Services
                             date = DateTime.Now.Date,
                             checkInTime = DateTime.UtcNow
                         };
+
+                        _serviceBus.SendMessageAsync(attendance);
                         _dbContext.attendances.Add(attendance);
                         _dbContext.SaveChanges();
                         return true;
