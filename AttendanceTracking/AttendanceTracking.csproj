@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>b3c41e7d-3883-401a-9576-d1d39e36793d</UserSecretsId>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -12,24 +13,24 @@
   <ItemGroup>
     <PackageReference Include="Azure.Communication.Email" Version="1.0.0-beta.1" />
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.12.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
     <PackageReference Include="Microsoft.Azure.ServiceBus" Version="5.2.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.1-dev-00293" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
-    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.4.0" />
-    <PackageReference Include="Azure.Identity" Version="1.8.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0-beta.1" />
+    <PackageReference Include="Azure.Identity" Version="1.9.0-beta.1" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.1-dev-00040" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
     <PackageReference Include="itext7" Version="7.2.5" />
   </ItemGroup>
