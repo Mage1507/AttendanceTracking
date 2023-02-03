@@ -81,8 +81,6 @@ namespace AttendanceTracking.Services
                             date = DateTime.Now.Date,
                             checkInTime = DateTime.UtcNow
                         };
-
-                        _serviceBus.SendMessageAsync(attendance);
                         _dbContext.attendances.Add(attendance);
                         _dbContext.SaveChanges();
                         return true;
@@ -126,6 +124,12 @@ namespace AttendanceTracking.Services
                             att.checkOutTime = DateTime.UtcNow;
                             _dbContext.attendances.Update(att);
                             _dbContext.SaveChanges();
+                            var employeeEmail = _employeeService.GetEmployeeEmailById(att.employeeId);
+                            att.totalPresentTime = 
+                                att.checkOutTime?.ToLocalTime() - att.checkInTime.ToLocalTime();
+                            att.checkOutTime = att.checkOutTime?.ToLocalTime();
+                            att.checkInTime = att.checkInTime.ToLocalTime();
+                            _serviceBus.SendMessageAsync(att,employeeEmail);
                             count++;
                             break;
                         }
@@ -181,7 +185,7 @@ namespace AttendanceTracking.Services
                             att.checkOutTime?.ToLocalTime() - att.checkInTime.ToLocalTime();
                         _logger.LogInformation("Total Present Time:" + att.totalPresentTime);
                         ts = ts + att.totalPresentTime;
-                        _logger.LogInformation("Total Present Time:" + ts);
+                        _logger.LogInformation("Total Hours in Office:" + ts);
                         att.totalHoursInOffice = ts;
                         att.checkOutTime = att.checkOutTime?.ToLocalTime();
                         att.checkInTime = att.checkInTime.ToLocalTime();
@@ -300,7 +304,8 @@ namespace AttendanceTracking.Services
             document.Add(table);
             document.Close();
 
-            var sendEmail = _emailService.SendEmail(managerId);
+            // var sendEmail = _emailService.SendEmail(managerId);
+            var sendEmail = true;
             if (sendEmail)
             {
                 return true;

@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Models;
 using Microsoft.Azure.ServiceBus;
 
@@ -13,8 +14,9 @@ public class ServiceBus
         _configuration = configuration;
     }
 
-    public async Task SendMessageAsync(Attendance attendance)
+    public async Task SendMessageAsync(Attendance attendance,string employeeEmail)
     {
+        attendance.employee.employeeEmail = employeeEmail;
         IQueueClient client = new QueueClient(_configuration["AzureServiceBusConnectionString"], _configuration["QueueName"]);
         //Serialize attendance details object
         var messageBody = JsonSerializer.Serialize(attendance);

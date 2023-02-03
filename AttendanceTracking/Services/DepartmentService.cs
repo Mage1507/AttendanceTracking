@@ -10,6 +10,11 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<DepartmentService> _logger;
 
+        public DepartmentService()
+        {
+            
+        }
+
         public DepartmentService(DbInitializer dbContext, ILogger<DepartmentService> logger)
         {
             _dbContext = dbContext;
@@ -17,7 +22,7 @@ namespace AttendanceTracking.Services
         }
 
         // Add Department
-        public bool AddDepartment(Department department)
+        public virtual bool AddDepartment(Department department)
         {
             _logger.LogInformation("AddDepartment Method Called" + department);
             try
@@ -41,7 +46,7 @@ namespace AttendanceTracking.Services
         }
 
         //Get All Departments
-        public List<Department> GetAllDepartments()
+        public virtual List<Department> GetAllDepartments()
         {
             _logger.LogInformation("GetAllDepartments Method Called");
             try

@@ -26,7 +26,7 @@ namespace AttendanceTracking.Services
             emailContent.PlainText = "Attendance Report";
             List<EmailAddress> emailAddresses = new List<EmailAddress>
             {
-                new EmailAddress(managerEmail) { DisplayName = "Friendly Display Name" }
+                new EmailAddress(managerEmail) { DisplayName = " " }
             };
             EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
             EmailMessage emailMessage = new EmailMessage(
