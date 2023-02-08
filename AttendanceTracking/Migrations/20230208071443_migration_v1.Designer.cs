@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceTracking.Migrations
 {
     [DbContext(typeof(DbInitializer))]
-    [Migration("20230120074736_migration_v1")]
+    [Migration("20230208071443_migration_v1")]
     partial class migrationv1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace AttendanceTracking.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -87,10 +87,6 @@ namespace AttendanceTracking.Migrations
 
                     b.Property<int>("managerId")
                         .HasColumnType("int");
-
-                    b.Property<string>("profileImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("employeeId");
 

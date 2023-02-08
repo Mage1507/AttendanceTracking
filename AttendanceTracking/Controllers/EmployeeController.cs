@@ -22,7 +22,7 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult AddEmployee([FromForm] EmployeeVM employeeVM)
+        public IActionResult AddEmployee(EmployeeVM employeeVM)
         {
             var addEmployee = _employeeService.AddEmployee(employeeVM);
             if (addEmployee)

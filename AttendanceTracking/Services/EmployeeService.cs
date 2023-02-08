@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using AttendanceTracking.Data;
 using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
 using Azure.Storage.Blobs;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace AttendanceTracking.Services
 {
@@ -18,9 +23,7 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<EmployeeService> _logger;
 
-        private readonly string _storageConnectionString;
 
-        private readonly string _storageContainerName;
 
         public EmployeeService(
             DbInitializer dbContext,
@@ -34,8 +37,6 @@ namespace AttendanceTracking.Services
             _managerService = managerService;
             _logger = logger;
             _mapper = mapper;
-            _storageConnectionString = configuration.GetValue<string>("BlobConnectionString");
-            _storageContainerName = configuration.GetValue<string>("BlobContainerName");
         }
 
         // Add Employee
@@ -46,10 +47,6 @@ namespace AttendanceTracking.Services
             {
                 return false;
             }
-            BlobContainerClient container = new BlobContainerClient(
-                _storageConnectionString,
-                _storageContainerName
-            );
             try
             {
                 if (
@@ -61,24 +58,11 @@ namespace AttendanceTracking.Services
                 }
                 else
                 {
-                    BlobClient client = container.GetBlobClient(
-                        employeeVM.employeeEmail.Split('@')[0]
-                            + Path.GetExtension(employeeVM.profileImageUrl.FileName)
-                    );
 
-                    using (Stream? data = employeeVM.profileImageUrl.OpenReadStream())
-                    {
-                        client.Upload(data);
-                    }
-                    if (client.Uri.AbsoluteUri != null)
-                    {
-                        var mappedEmployee = _mapper.Map<Employee>(employeeVM);
-                        mappedEmployee.profileImageUrl = client.Uri.AbsoluteUri;
-                        _dbContext.employees.Add(mappedEmployee);
-                        _dbContext.SaveChanges();
+                    var mappedEmployee = _mapper.Map<Employee>(employeeVM);
+                    _dbContext.employees.Add(mappedEmployee);
+                    _dbContext.SaveChanges();
                         return true;
-                    }
-                    return false;
                 }
             }
             catch (Exception ex)

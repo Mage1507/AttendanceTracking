@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AttendanceTracking.Data;
 using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
-using Azure.Communication.Email;
-using Azure.Communication.Email.Models;
 using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace AttendanceTracking.Services
 {
@@ -23,25 +25,20 @@ namespace AttendanceTracking.Services
 
         private readonly ManagerService _managerService;
 
-        private readonly EmailService _emailService;
-
         private readonly ILogger<AttendanceService> _logger;
 
         private readonly IMapper _mapper;
 
         private readonly IConfiguration _configuration;
-        
-        private ServiceBus _serviceBus;
+
 
         public AttendanceService(
             DbInitializer dbContext,
             EmployeeService employeeService,
             ManagerService manager,
-            EmailService emailService,
             ILogger<AttendanceService> logger,
             IMapper mapper,
-            IConfiguration configuration,
-            ServiceBus serviceBus
+            IConfiguration configuration
         )
         {
             _dbContext = dbContext;
@@ -50,8 +47,6 @@ namespace AttendanceTracking.Services
             _logger = logger;
             _mapper = mapper;
             _configuration = configuration;
-            _emailService = emailService;
-            _serviceBus = serviceBus;
         }
 
         //Employee CheckIn Function
@@ -68,9 +63,7 @@ namespace AttendanceTracking.Services
                     //linq query
                     var attendanceResult =
                         from c in _dbContext.attendances
-                        where c.employeeId == checkInTimeVM.employeeId
-                        where c.date == DateTime.Now.Date
-                        where c.checkOutTime == null
+                        where (c.employeeId == checkInTimeVM.employeeId && c.date == DateTime.Now.Date && c.checkOutTime == null)
                         select c;
                     _logger.LogInformation("Attendance Result:" + attendanceResult);
                     if (attendanceResult.Any() != true)
@@ -101,7 +94,6 @@ namespace AttendanceTracking.Services
         //Employee CheckOut Function
         public bool LogCheckOut(CheckOutTimeVM checkOutTimeVM)
         {
-            int count = 0;
             try
             {
                 if (checkOutTimeVM == null)
@@ -111,38 +103,17 @@ namespace AttendanceTracking.Services
                 else
                 {
                     var attendanceResult =
-                        from c in _dbContext.attendances
-                        where c.employeeId == checkOutTimeVM.employeeId
-                        where c.date == DateTime.Now.Date
-                        where c.checkOutTime == null
-                        select c;
-
-                    if (attendanceResult.Any() == true)
-                    {
-                        foreach (var att in attendanceResult)
-                        {
-                            att.checkOutTime = DateTime.UtcNow;
-                            _dbContext.attendances.Update(att);
-                            _dbContext.SaveChanges();
-                            var employeeEmail = _employeeService.GetEmployeeEmailById(att.employeeId);
-                            att.totalPresentTime = 
-                                att.checkOutTime?.ToLocalTime() - att.checkInTime.ToLocalTime();
-                            att.checkOutTime = att.checkOutTime?.ToLocalTime();
-                            att.checkInTime = att.checkInTime.ToLocalTime();
-                            _serviceBus.SendMessageAsync(att,employeeEmail);
-                            count++;
-                            break;
-                        }
-                    }
-
-                    if (count == 0)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                          _dbContext.attendances.
+                         SingleOrDefault(c => c.employeeId == checkOutTimeVM.employeeId && c.date == DateTime.Now.Date && c.checkOutTime == null);
+                    _logger.LogInformation("Attendance Result:" + attendanceResult);
+                    attendanceResult.checkOutTime = DateTime.UtcNow;
+                    _dbContext.attendances.Update(attendanceResult);
+                    _dbContext.SaveChanges();
+                    var employeeEmail = _employeeService.GetEmployeeEmailById(attendanceResult.employeeId);
+                    attendanceResult.totalPresentTime = attendanceResult.checkOutTime?.ToLocalTime() - attendanceResult.checkInTime.ToLocalTime();
+                    attendanceResult.checkOutTime = attendanceResult.checkOutTime?.ToLocalTime();
+                    attendanceResult.checkInTime = attendanceResult.checkInTime.ToLocalTime();
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -191,6 +162,7 @@ namespace AttendanceTracking.Services
                         att.checkInTime = att.checkInTime.ToLocalTime();
                         att.employeeEmail = _employeeService.GetEmployeeEmailById(att.employeeId);
                         attendanceList.Add(att);
+                        _logger.LogInformation("Attendance List:" + attendanceList);
                     }
                 }
             }
@@ -303,8 +275,6 @@ namespace AttendanceTracking.Services
             }
             document.Add(table);
             document.Close();
-
-            // var sendEmail = _emailService.SendEmail(managerId);
             var sendEmail = true;
             if (sendEmail)
             {

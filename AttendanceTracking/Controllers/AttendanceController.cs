@@ -9,6 +9,7 @@ using AttendanceTracking.Models;
 using AttendanceTracking.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AttendanceTracking.Controllers
 {

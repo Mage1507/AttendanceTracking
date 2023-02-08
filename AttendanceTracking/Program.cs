@@ -10,7 +10,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using System;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 internal class Program
 {
@@ -20,23 +24,14 @@ internal class Program
 
         // Add services to the container.
 
-        builder.Configuration.AddAzureKeyVault(
-            new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
-            new DefaultAzureCredential()
-        );
+        // builder.Configuration.AddAzureKeyVault(
+        //     new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+        //     new DefaultAzureCredential()
+        // );
 
         var logger = new LoggerConfiguration().ReadFrom
             .Configuration(builder.Configuration)
             .Enrich.FromLogContext()
-            .WriteTo.ApplicationInsights(
-                new TelemetryConfiguration
-                {
-                    InstrumentationKey = builder.Configuration.GetValue<string>(
-                        "InstrumentationKey"
-                    )
-                },
-                TelemetryConverter.Traces
-            )
             .CreateLogger();
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(logger);
@@ -106,8 +101,6 @@ internal class Program
         builder.Services.AddScoped<ManagerService>();
         builder.Services.AddScoped<EmployeeService>();
         builder.Services.AddScoped<AttendanceService>();
-        builder.Services.AddScoped<EmailService>();
-        builder.Services.AddScoped<ServiceBus>();
 
         var app = builder.Build();
 

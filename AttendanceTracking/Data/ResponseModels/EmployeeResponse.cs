@@ -10,8 +10,6 @@ namespace AttendanceTracking.Data.ResponseModels
 
         public string employeeEmail { get; set; }
 
-        public string profileImageUrl { get; set; }
-
         public int managerId { get; set; }
     }
 }

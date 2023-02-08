@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AttendanceTracking.Data;
 using AttendanceTracking.Models;
+using Microsoft.Extensions.Logging;
 
 namespace AttendanceTracking.Services
 {

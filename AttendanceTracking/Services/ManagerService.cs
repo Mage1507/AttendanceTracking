@@ -8,6 +8,10 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AttendanceTracking.Data.ResponseModels;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace AttendanceTracking.Services
 {
