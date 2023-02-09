@@ -5,8 +5,7 @@ namespace AttendanceTracking.Services;
 
 public class ConfigSettings : IConfigSettings
 {
-    private string _key1;
-    private string _key2;
+    private string _dbSecret;
     public ConfigSettings()
     {
         Init();
@@ -16,27 +15,27 @@ public class ConfigSettings : IConfigSettings
         var secretValues = JObject.Parse(SecretsManagerService.GetSecret());
         if (secretValues != null)
         {
-            _key1 = secretValues["mssql"].ToString();
+            _dbSecret = secretValues["mssql"].ToString();
         }
 
-        return _key1;
+        return _dbSecret;
     }
-    public string Key1
+    public string DbSecret
     {
         get
         {
-            return _key1;
+            return _dbSecret;
         }
         set
         {
-            _key1 = value;
+            _dbSecret = value;
         }
     }
 
 }
 public interface IConfigSettings
 {
-    string Key1
+    string DbSecret
     {
         get;
         set;

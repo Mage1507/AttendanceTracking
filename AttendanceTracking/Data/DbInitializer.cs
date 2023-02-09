@@ -25,7 +25,7 @@ namespace AttendanceTracking.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configSettings.Key1);
+            optionsBuilder.UseSqlServer(_configSettings.DbSecret);
         }
 
 

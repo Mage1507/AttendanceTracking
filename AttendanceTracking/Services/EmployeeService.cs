@@ -8,6 +8,7 @@ using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
 using Azure.Storage.Blobs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -77,7 +78,7 @@ namespace AttendanceTracking.Services
         {
             try
             {
-                var employees = _mapper.Map<List<EmployeeResponse>>(_dbContext.employees.ToList());
+                var employees = _mapper.Map<List<EmployeeResponse>>(_dbContext.employees.Include("manager").ToList());
                 if (employees != null)
                 {
                     return employees;

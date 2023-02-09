@@ -16,6 +16,7 @@ using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
+using System.Text.Json.Serialization;
 
 internal class Program
 {
@@ -39,7 +40,8 @@ internal class Program
         builder.Logging.AddSerilog(logger);
 
         builder.Services
-            .AddControllers()
+            .AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
             .AddFluentValidation(
                 c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly())
             );
@@ -95,23 +97,23 @@ internal class Program
                 }
             );
         });
-        
-     
+
+
         builder.Services.AddScoped<DepartmentService>();
         builder.Services.AddScoped<ManagerService>();
         builder.Services.AddScoped<EmployeeService>();
         builder.Services.AddScoped<AttendanceService>();
         builder.Services.AddScoped<SecretsManagerService>();
-        builder.Services.AddScoped< IConfigSettings, ConfigSettings > ();
+        builder.Services.AddScoped<IConfigSettings, ConfigSettings>();
         builder.Services.AddDbContext<DbInitializer>();
 
 
 
         // Configure the HTTP request pipeline.
         var app = builder.Build();
-        
 
-      
+
+
 
         app.UseSwagger();
         app.UseSwaggerUI(options =>

@@ -1,4 +1,5 @@
 ﻿using System;
+using AttendanceTracking.Models;
 
 namespace AttendanceTracking.Data.ResponseModels
 {
@@ -11,5 +12,7 @@ namespace AttendanceTracking.Data.ResponseModels
         public string employeeEmail { get; set; }
 
         public int managerId { get; set; }
+
+        public Manager manager { get; set; }
     }
 }
