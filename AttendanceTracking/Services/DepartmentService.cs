@@ -13,11 +13,7 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<DepartmentService> _logger;
 
-        public DepartmentService()
-        {
-            
-        }
-
+    
         public DepartmentService(DbInitializer dbContext, ILogger<DepartmentService> logger)
         {
             _dbContext = dbContext;

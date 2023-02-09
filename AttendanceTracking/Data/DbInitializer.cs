@@ -1,13 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using AttendanceTracking.Models;
+using AttendanceTracking.Services;
 
 namespace AttendanceTracking.Data
 {
     public class DbInitializer : DbContext
     {
-        public DbInitializer(DbContextOptions<DbInitializer> options)
-            : base(options) { }
+        private readonly IConfigSettings _configSettings;
+        public DbInitializer(DbContextOptions<DbInitializer> options, IConfigSettings configSettings)
+            : base(options)
+        {
+            _configSettings = configSettings;
+        }
 
         public DbSet<Employee> employees { get; set; }
 
@@ -16,5 +21,13 @@ namespace AttendanceTracking.Data
         public DbSet<Department> departments { get; set; }
 
         public DbSet<Attendance> attendances { get; set; }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_configSettings.Key1);
+        }
+
+
     }
 }

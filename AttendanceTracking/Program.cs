@@ -15,12 +15,14 @@ using Microsoft.Extensions.Configuration;
 using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Linq;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
 
         // Add services to the container.
 
@@ -93,18 +95,23 @@ internal class Program
                 }
             );
         });
-
-        builder.Services.AddDbContext<DbInitializer>(
-            options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql"))
-        );
+        
+     
         builder.Services.AddScoped<DepartmentService>();
         builder.Services.AddScoped<ManagerService>();
         builder.Services.AddScoped<EmployeeService>();
         builder.Services.AddScoped<AttendanceService>();
+        builder.Services.AddScoped<SecretsManagerService>();
+        builder.Services.AddScoped< IConfigSettings, ConfigSettings > ();
+        builder.Services.AddDbContext<DbInitializer>();
 
-        var app = builder.Build();
+
 
         // Configure the HTTP request pipeline.
+        var app = builder.Build();
+        
+
+      
 
         app.UseSwagger();
         app.UseSwaggerUI(options =>
