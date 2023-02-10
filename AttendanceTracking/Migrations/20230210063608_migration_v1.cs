@@ -54,6 +54,7 @@ namespace AttendanceTracking.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     employeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     employeeEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    profileImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     managerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

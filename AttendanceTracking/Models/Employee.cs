@@ -19,6 +19,9 @@ namespace AttendanceTracking.Models
         [EmailAddress]
         public string employeeEmail { get; set; }
         
+        [Required]
+        public string profileImageUrl { get; set; }
+        
         
         public int managerId { get; set; }
         

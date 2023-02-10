@@ -85,6 +85,10 @@ namespace AttendanceTracking.Migrations
                     b.Property<int>("managerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("profileImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("employeeId");
 
                     b.HasIndex("managerId");

@@ -41,5 +41,7 @@ namespace AttendanceTracking.Data.Constants
         public const string LogCheckOutSuccessfully = "CheckOutTime Logged Successfully";
 
         public const string LogCheckOutNotSuccessfully = "Error occured in Logging CheckOutTime";
+
+        public const string ImageUrl = "https://dotnet-training-attendancetracking.s3.amazonaws.com/";
     }
 }

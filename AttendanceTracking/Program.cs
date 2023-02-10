@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using System.Text.Json.Serialization;
+using AwsS3.Services;
 
 internal class Program
 {
@@ -105,6 +106,7 @@ internal class Program
         builder.Services.AddScoped<AttendanceService>();
         builder.Services.AddScoped<SecretsManagerService>();
         builder.Services.AddScoped<IConfigSettings, ConfigSettings>();
+        builder.Services.AddScoped<IStorageService, StorageService>();
         builder.Services.AddDbContext<DbInitializer>();
 
 

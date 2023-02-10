@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceTracking.Migrations
 {
     [DbContext(typeof(DbInitializer))]
-    [Migration("20230208071443_migration_v1")]
+    [Migration("20230210063608_migration_v1")]
     partial class migrationv1
     {
         /// <inheritdoc />
@@ -87,6 +87,10 @@ namespace AttendanceTracking.Migrations
 
                     b.Property<int>("managerId")
                         .HasColumnType("int");
+
+                    b.Property<string>("profileImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("employeeId");
 

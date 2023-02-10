@@ -63,11 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Logs" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Data\Validators\" />
     <Folder Include="Data\Profiles\" />
     <Folder Include="Data\Constants\" />
     <Folder Include="Data\ResponseModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AwsS3\AwsS3.csproj" />
   </ItemGroup>
 </Project>

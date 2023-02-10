@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AttendanceTracking.Data;
+using AttendanceTracking.Data.Constants;
 using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
+using AwsS3.Models;
+using AwsS3.Services;
 using Azure.Storage.Blobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +27,10 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<EmployeeService> _logger;
 
+        private readonly IConfiguration _configuration;
+
+        private readonly IStorageService _storageService;
+
 
 
         public EmployeeService(
@@ -31,17 +38,20 @@ namespace AttendanceTracking.Services
             ManagerService managerService,
             ILogger<EmployeeService> logger,
             IMapper mapper,
-            IConfiguration configuration
+            IConfiguration configuration,
+            IStorageService storageService
         )
         {
             _dbContext = dbContext;
             _managerService = managerService;
             _logger = logger;
             _mapper = mapper;
+            _configuration = configuration;
+            _storageService = storageService;
         }
 
         // Add Employee
-        public bool AddEmployee(EmployeeVM employeeVM)
+        public async Task<bool> AddEmployee(EmployeeVM employeeVM)
         {
             _logger.LogInformation("AddEmployee Method Called" + employeeVM);
             if (employeeVM == null)
@@ -61,9 +71,38 @@ namespace AttendanceTracking.Services
                 {
 
                     var mappedEmployee = _mapper.Map<Employee>(employeeVM);
+
+
+                    await using var memoryStream = new MemoryStream();
+                    await employeeVM.profileImageUrl.CopyToAsync(memoryStream);
+
+                    var fileExt = Path.GetExtension(employeeVM.profileImageUrl.FileName);
+                    var docName = $"{employeeVM.employeeEmail.Split('@')[0]}{fileExt}";
+                    // call server
+
+                    var s3Obj = new S3Object()
+                    {
+                        BucketName = "dotnet-training-attendancetracking",
+                        InputStream = memoryStream,
+                        Name = docName
+                    };
+
+                    var cred = new AwsCredentials()
+                    {
+                        AccessKey = _configuration["AwsConfiguration:AWSAccessKey"],
+                        SecretKey = _configuration["AwsConfiguration:AWSSecretKey"],
+                        SessionToken = _configuration["AwsConfiguration:AWSSessionToken"]
+                    };
+                    _logger.LogInformation("credentials" + cred.AccessKey + cred.SecretKey + cred.SessionToken);
+                    var result = await _storageService.UploadFileAsync(s3Obj, cred);
+                    _logger.LogInformation("UploadFileAsync Method Called" + result);
+                    mappedEmployee.profileImageUrl = ResponseConstants.ImageUrl+docName;
                     _dbContext.employees.Add(mappedEmployee);
                     _dbContext.SaveChanges();
-                        return true;
+                    return true;
+
+
+
                 }
             }
             catch (Exception ex)
