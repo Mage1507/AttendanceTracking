@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceTracking", "Atten
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsS3", "AwsS3\AwsS3.csproj", "{68D39ADA-E923-4370-8D36-AA605465098E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSecretManager", "AwsSecretManager\AwsSecretManager.csproj", "{383D75B9-85D6-4084-AFA9-13C77B9DB309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSES", "AwsSES\AwsSES.csproj", "{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{68D39ADA-E923-4370-8D36-AA605465098E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D39ADA-E923-4370-8D36-AA605465098E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D39ADA-E923-4370-8D36-AA605465098E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{383D75B9-85D6-4084-AFA9-13C77B9DB309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383D75B9-85D6-4084-AFA9-13C77B9DB309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383D75B9-85D6-4084-AFA9-13C77B9DB309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383D75B9-85D6-4084-AFA9-13C77B9DB309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

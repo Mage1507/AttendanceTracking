@@ -64,7 +64,7 @@ namespace AttendanceTracking.Controllers
 
         [Route("[Action]/{managerId}/{date}/{fromTime}/{toTime}")]
         [HttpGet]
-        [Authorize]
+       
         public List<AttendanceResponse> GetAttendanceOfEmployee(
             int managerId,
             DateTime date,

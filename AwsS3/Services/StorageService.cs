@@ -15,9 +15,7 @@ public class StorageService : IStorageService
     public async Task<S3ResponseDto> UploadFileAsync(S3Object obj, AwsCredentials awsCredentialsValues)
     {
         //var awsCredentialsValues = _config.ReadS3Credentials();
-
-        Console.WriteLine($"Key: {awsCredentialsValues.AccessKey}, Secret: {awsCredentialsValues.SecretKey} , Session: {awsCredentialsValues.SessionToken}");
-
+        
         var credentials = new SessionAWSCredentials(awsCredentialsValues.AccessKey, awsCredentialsValues.SecretKey,awsCredentialsValues.SessionToken);
 
         var config = new AmazonS3Config() 

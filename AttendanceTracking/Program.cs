@@ -18,6 +18,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using System.Text.Json.Serialization;
 using AwsS3.Services;
+using AwsSecretManager.Interface;
+using AwsSecretManager.Services;
+using AwsSecretManager.Settings;
+using AwsSES.Interface;
+using AwsSES.Service;
 
 internal class Program
 {
@@ -107,6 +112,7 @@ internal class Program
         builder.Services.AddScoped<SecretsManagerService>();
         builder.Services.AddScoped<IConfigSettings, ConfigSettings>();
         builder.Services.AddScoped<IStorageService, StorageService>();
+        builder.Services.AddScoped<ISendEmail, SendEmail>();
         builder.Services.AddDbContext<DbInitializer>();
 
 

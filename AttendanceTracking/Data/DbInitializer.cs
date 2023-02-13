@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using AttendanceTracking.Models;
 using AttendanceTracking.Services;
+using AwsSecretManager.Interface;
 
 namespace AttendanceTracking.Data
 {

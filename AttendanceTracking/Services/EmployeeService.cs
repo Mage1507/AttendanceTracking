@@ -10,6 +10,7 @@ using AttendanceTracking.Models;
 using AutoMapper;
 using AwsS3.Models;
 using AwsS3.Services;
+using AwsSecretManager.Interface;
 using Azure.Storage.Blobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +28,7 @@ namespace AttendanceTracking.Services
 
         private readonly ILogger<EmployeeService> _logger;
 
-        private readonly IConfiguration _configuration;
+        private readonly IConfigSettings _configSettings;       
 
         private readonly IStorageService _storageService;
 
@@ -39,15 +40,16 @@ namespace AttendanceTracking.Services
             ILogger<EmployeeService> logger,
             IMapper mapper,
             IConfiguration configuration,
-            IStorageService storageService
+            IStorageService storageService,
+            IConfigSettings configSettings
         )
         {
             _dbContext = dbContext;
             _managerService = managerService;
             _logger = logger;
             _mapper = mapper;
-            _configuration = configuration;
             _storageService = storageService;
+            _configSettings = configSettings;
         }
 
         // Add Employee
@@ -89,9 +91,9 @@ namespace AttendanceTracking.Services
 
                     var cred = new AwsCredentials()
                     {
-                        AccessKey = _configuration["AwsConfiguration:AWSAccessKey"],
-                        SecretKey = _configuration["AwsConfiguration:AWSSecretKey"],
-                        SessionToken = _configuration["AwsConfiguration:AWSSessionToken"]
+                        AccessKey = _configSettings.AwsAccessKey,
+                        SecretKey = _configSettings.AwsSecretKey,
+                        SessionToken = _configSettings.AwsSessionToken
                     };
                     _logger.LogInformation("credentials" + cred.AccessKey + cred.SecretKey + cred.SessionToken);
                     var result = await _storageService.UploadFileAsync(s3Obj, cred);

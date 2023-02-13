@@ -7,6 +7,8 @@ using AttendanceTracking.Data.ResponseModels;
 using AttendanceTracking.Data.ViewModels;
 using AttendanceTracking.Models;
 using AutoMapper;
+using AwsSecretManager.Interface;
+using AwsSES.Interface;
 using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -28,8 +30,12 @@ namespace AttendanceTracking.Services
         private readonly ILogger<AttendanceService> _logger;
 
         private readonly IMapper _mapper;
+        
+        private readonly IConfigSettings _configSettings;
+        
+        private readonly ISendEmail _sendEmail;
 
-        private readonly IConfiguration _configuration;
+        
 
 
         public AttendanceService(
@@ -38,7 +44,8 @@ namespace AttendanceTracking.Services
             ManagerService manager,
             ILogger<AttendanceService> logger,
             IMapper mapper,
-            IConfiguration configuration
+            IConfigSettings configSettings,
+            ISendEmail sendEmail
         )
         {
             _dbContext = dbContext;
@@ -46,7 +53,8 @@ namespace AttendanceTracking.Services
             _managerService = manager;
             _logger = logger;
             _mapper = mapper;
-            _configuration = configuration;
+            _configSettings = configSettings;
+            _sendEmail = sendEmail;
         }
 
         //Employee CheckIn Function
@@ -275,15 +283,14 @@ namespace AttendanceTracking.Services
             }
             document.Add(table);
             document.Close();
-            var sendEmail = true;
-            if (sendEmail)
+            var sendEmail=_sendEmail.send(_configSettings.AwsAccessKey, _configSettings.AwsSecretKey, 
+                _configSettings.AwsSessionToken, managerId);
+            if (sendEmail.Result)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

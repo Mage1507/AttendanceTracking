@@ -2,7 +2,7 @@ using Amazon;
 using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
 
-namespace AttendanceTracking.Services;
+namespace AwsSecretManager.Services;
 
 public class SecretsManagerService
 {
@@ -17,9 +17,6 @@ public class SecretsManagerService
         request.SecretId = secretName;
         request.VersionStage = "AWSCURRENT"; // VersionStage defaults to AWSCURRENT if unspecified.
         GetSecretValueResponse response = null;
-        // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-        // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-        // We rethrow the exception by default.
         try
         {
             response = client.GetSecretValueAsync(request).Result;
@@ -42,5 +39,4 @@ public class SecretsManagerService
             return decodedBinarySecret;
         }
     }
-
 }
