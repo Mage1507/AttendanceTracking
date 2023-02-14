@@ -52,6 +52,11 @@ namespace AttendanceTracking.Services
             _configSettings = configSettings;
         }
 
+        public EmployeeService()
+        {
+            
+        }
+
         // Add Employee
         public async Task<bool> AddEmployee(EmployeeVM employeeVM)
         {
@@ -115,7 +120,7 @@ namespace AttendanceTracking.Services
         }
 
         //Get All Employees
-        public List<EmployeeResponse> GetAllEmployees()
+        public virtual List<EmployeeResponse> GetAllEmployees()
         {
             try
             {

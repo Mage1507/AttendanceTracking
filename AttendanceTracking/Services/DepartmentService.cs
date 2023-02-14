@@ -20,6 +20,11 @@ namespace AttendanceTracking.Services
             _logger = logger;
         }
 
+        public DepartmentService()
+        {
+            
+        }
+
         // Add Department
         public virtual bool AddDepartment(Department department)
         {
@@ -84,7 +89,7 @@ namespace AttendanceTracking.Services
         }
 
         //Get Department Id By Name
-        public int GetDepartmentIdByName(string departmentName)
+        public virtual int GetDepartmentIdByName(string departmentName)
         {
             _logger.LogInformation("GetDepartmentIdByName Method Called");
             try

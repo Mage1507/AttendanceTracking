@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSecretManager", "AwsSecr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSES", "AwsSES\AwsSES.csproj", "{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceTracking.Test", "AttendanceTracking.Test\AttendanceTracking.Test.csproj", "{BF91197F-8A25-4FD6-990D-F604BEA2325A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{156295F7-9E8E-4C0F-B227-6DA0A0FE5E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF91197F-8A25-4FD6-990D-F604BEA2325A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF91197F-8A25-4FD6-990D-F604BEA2325A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF91197F-8A25-4FD6-990D-F604BEA2325A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF91197F-8A25-4FD6-990D-F604BEA2325A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

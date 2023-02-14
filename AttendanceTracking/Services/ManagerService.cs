@@ -42,8 +42,13 @@ namespace AttendanceTracking.Services
             _configuration = configuration;
         }
 
+        public ManagerService()
+        {
+            
+        }
+
         // Add Manager
-        public bool AddManager(ManagerVM managerVM)
+        public virtual bool AddManager(ManagerVM managerVM)
         {
             _logger.LogInformation("Add Manager Method Called");
             try
@@ -133,7 +138,7 @@ namespace AttendanceTracking.Services
 
         //Get All Managers
 
-        public List<ManagerResponse> GetAllManagers()
+        public virtual List<ManagerResponse> GetAllManagers()
         {
             _logger.LogInformation("GetAllManagers Method Called");
             try
@@ -173,7 +178,7 @@ namespace AttendanceTracking.Services
         }
 
         //Get Manager Id by Manager Email
-        public int GetManagerIdByManagerEmail(string managerEmail)
+        public virtual int GetManagerIdByManagerEmail(string managerEmail)
         {
             _logger.LogInformation("GetManagerIdByEmail Method Called");
             var manager = _dbContext.managers

@@ -14,14 +14,16 @@ namespace AttendanceTracking.Data
         {
             _configSettings = configSettings;
         }
+        
+        public DbInitializer(){}
 
-        public DbSet<Employee> employees { get; set; }
+        public virtual DbSet<Employee> employees { get; set; }
 
-        public DbSet<Manager> managers { get; set; }
+        public virtual DbSet<Manager> managers { get; set; }
 
-        public DbSet<Department> departments { get; set; }
+        public virtual DbSet<Department> departments { get; set; }
 
-        public DbSet<Attendance> attendances { get; set; }
+        public virtual DbSet<Attendance> attendances { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
