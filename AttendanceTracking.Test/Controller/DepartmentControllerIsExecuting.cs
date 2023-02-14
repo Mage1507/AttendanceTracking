@@ -64,7 +64,7 @@ public class DepartmentControllerIsExecuting
         var okDepartmentResult = departmentResult as OkObjectResult;
         
         //assert
-        Assert.Equal("Department Id is : 1", okDepartmentResult.Value);
+        Assert.Equal("Department Id is : "+departmentList[0].departmentId, okDepartmentResult.Value);
     }
     
 

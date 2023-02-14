@@ -32,5 +32,21 @@ public class EmployeeControllerIsExecuting
 
     }
 
+    [Fact]
+    public void GetEmployeeIdByEmployeeEmail()
+    {
+        //arrange
+        var employeeList = EmployeeMockData.GetAllEmployee();
+        _employeeService.Setup(x => x.GetEmployeeIdByEmployeeEmail(employeeList[0].employeeEmail)).Returns(employeeList[0].employeeId);
+        var employeeController = new EmployeeController(_employeeService.Object);
+        
+        //act
+        var employeeResult = employeeController.GetEmployeeIdByEmployeeEmail(employeeList[0].employeeEmail);
+        var okEmployeeResult = employeeResult as OkObjectResult;
+        
+        //assert
+        Assert.Equal("Employee Id is : "+employeeList[0].employeeId, okEmployeeResult.Value);
+    }
+
 
 }

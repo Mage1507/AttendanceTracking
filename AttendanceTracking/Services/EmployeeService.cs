@@ -39,7 +39,6 @@ namespace AttendanceTracking.Services
             ManagerService managerService,
             ILogger<EmployeeService> logger,
             IMapper mapper,
-            IConfiguration configuration,
             IStorageService storageService,
             IConfigSettings configSettings
         )
@@ -167,7 +166,7 @@ namespace AttendanceTracking.Services
         }
 
         //Get Employee Id By Employee Email
-        public int GetEmployeeIdByEmployeeEmail(string employeeEmail)
+        public virtual int GetEmployeeIdByEmployeeEmail(string employeeEmail)
         {
             _logger.LogInformation("GetEmployeeIdByEmployeeEmail Method Called" + employeeEmail);
             var employee = _dbContext.employees
