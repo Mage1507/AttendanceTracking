@@ -62,33 +62,30 @@ namespace AttendanceTracking.Controllers
             }
         }
 
-        [Route("[Action]/{managerId}/{date}/{fromTime}/{toTime}")]
-        [HttpGet]
+        [Route("[Action]")]
+        [HttpPost]
        
         public List<AttendanceResponse> GetAttendanceOfEmployee(
-            int managerId,
-            DateTime date,
-            DateTime fromTime,
-            DateTime toTime
+            [FromBody] AttendanceVM attendanceVm
         )
         {
             _logger.LogInformation(
                 "GetAttendanceOfEmployee method called : "
-                    + managerId
+                    + attendanceVm.managerId
                     + " "
-                    + date
+                    + attendanceVm.date
                     + " "
-                    + fromTime
+                    + attendanceVm.fromTime
                     + " "
-                    + toTime
+                    + attendanceVm.toTime
             );
             try
             {
                 var attendance = _attendanceService.GetAttendanceOfEmployee(
-                    managerId,
-                    date,
-                    fromTime,
-                    toTime
+                    attendanceVm.managerId,
+                    attendanceVm.date,
+                    attendanceVm.fromTime,
+                    attendanceVm.toTime
                 );
                 return attendance;
             }
